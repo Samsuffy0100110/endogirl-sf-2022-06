@@ -1,0 +1,9 @@
+.foot-link:hover,
+.foot-link:focus,
+.foot-link.active,
+.foot-link:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px;
+    
+}
