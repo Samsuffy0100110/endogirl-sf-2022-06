@@ -1,4 +1,9 @@
-.nav-pics{
-    width: 50px;
-    height: 50px;
+.nav-link:hover,
+.nav-link:focus,
+.nav-link.active,
+.nav-link:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px;
+    
 }
