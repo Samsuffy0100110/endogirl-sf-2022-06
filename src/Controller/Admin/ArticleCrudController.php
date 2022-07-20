@@ -3,12 +3,14 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
+use App\Entity\Links;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -42,12 +44,13 @@ class ArticleCrudController extends AbstractCrudController
                 ->setUploadDir('public/images/pictures/')
                 ->setUploadedFileNamePattern('[name].[extension]')
                 ->setLabel('Image')
-                ->setHelp('L\'image doit être au format jpg, jpeg, png ou gif et doit faire moins de 3Mo'),
+                ->setHelp('L\'image doit être au format jpg, jpeg, png ou gif et doit faire moins de 2Mo'),
             DateTimeField::new('createdAt')
                 ->setLabel('Date de création')
                 ->setFormat('d/m/Y H:i'),
             BooleanField::new('isPublished')
                 ->setLabel('Publié'),
+                
         ];
     }
 }
