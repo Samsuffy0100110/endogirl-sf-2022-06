@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contactez-moi{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 d-flex flex-column align-items-center">
+            <img src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
+        </div>
+        <div class="col-lg-4">
+            <h1 class="text-warning">Contactez-Moi !</h1>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-8 bg-primary shadow">
+            {{ render(controller('App\\Controller\\ContactController::contactView')) }}
+        </div>
+        <div class="col-lg-2">
+            <img src="{{ asset('build/images/homework.png') }}" alt="Home Work">
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-5">
+        </div>
+        <div class="col-lg-7">
+            <img src="{{ asset('build/images/arrowdown.png') }}" alt="Arrow">
+        </div>
+    </div>
+</div>
+{% endblock %}
