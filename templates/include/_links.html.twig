@@ -1,0 +1,20 @@
+<style>
+    a,
+    a:focus,
+    a.active,
+    a:hover {
+        color: #574E4E;
+        text-decoration: underline;
+        text-decoration-thickness: 3px;
+        text-underline-offset: 4px;
+    }
+    .summary {
+        color: #574E4E;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+</style>
+{% for link in links %}
+    <a class="link">{{ link.link|raw }}</a>
+    <p class="summary" >{{ link.summary }}</p>
+{% endfor %}

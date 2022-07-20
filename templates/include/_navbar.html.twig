@@ -7,12 +7,12 @@
     <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
         <ul class="navbar-nav navbar-nav collapse navbar-collapse flex-row justify-content-around">
             <li class="nav-item d-flex flex-column align-items-center">
-                <img class"nav-pics" src="{{ asset('build/images/news.png') }}" alt="Blog" width="50px" height="50px">
-                <a class="nav-link" href="#">Mon Humeur</a>
+                <a href="{{ path('article_index')}}"><img class"nav-pics" src="{{ asset('build/images/news.png') }}" alt="Blog" width="50px" height="50px"></a>
+                <a class="nav-link" href="{{ path('article_index')}}">Mon Humeur</a>
             </li>
             <li class="nav-item d-flex flex-column align-items-center">
-                <img class"text-center" src="{{ asset('build/images/uterus.png') }}" alt="Utérus" width="50px" height="50px">
-                <a class="nav-link" href="#">L'endométriose</a>
+                <a href="{{ path('endometriose')}}"><img class"text-center" src="{{ asset('build/images/uterus.png') }}" alt="Utérus" width="50px" height="50px"></a>
+                <a class="nav-link" href="{{ path('endometriose')}}">L'endométriose</a>
             </li>
             <li class="nav-item d-flex flex-column align-items-center">
                 <img class"nav-pics" src="{{ asset('build/images/contact.png') }}" alt="Contact" width="50px" height="50px">
