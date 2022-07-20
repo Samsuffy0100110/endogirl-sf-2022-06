@@ -5,4 +5,9 @@
     height: 100vh;
     width: 200px;
 }
-
+.scroller {
+    height: 100vh;
+    overflow-y: scroll;
+    scrollbar-color: rebeccapurple green;
+    scrollbar-width: thin;
+}

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-6 d-flex flex-column align-items-center">
+            <img src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
+            <p class="text-dark mt-5 mb-5">{{ article.content|raw }}</p>
+        </div>
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-4">
+            <h1 class="text-warning">{{ article.title }}</h1>
+            <p class="card-text mb-5"><small class="text-muted">{{ article.createdAt|format_datetime('full', 'short', locale='fr')}}</small></p>
+            <img src="{{ ('/images/pictures/' ~ article.picture)}}" class="card-img-top" alt="{{ article.title }}">
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-4">
+            <h2 class="text-warning">Laissez un commentaire</h2>
+        </div>
+        <div class="col-lg-7">
+            <img src="{{ asset('build/images/arrowdown.png') }}" alt="Arrow">
+        </div>
+    </div>
+</div>
+{% endblock %}
