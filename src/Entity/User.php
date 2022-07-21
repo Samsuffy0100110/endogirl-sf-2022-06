@@ -19,6 +19,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\Length(min : 3, max : 50)]
     #[Assert\NotBlank(message:"email requis")]
     private ?string $email = null;
 
@@ -33,7 +34,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank()]
-    #[Assert\Length(min : 3, max : 255)]
+    #[Assert\Length(min : 3, max : 50)]
     private ?string $nickname = null;
 
     #[ORM\ManyToOne(inversedBy: 'user')]
