@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Links;
 use App\Entity\Article;
+use App\Entity\Comment;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -30,5 +31,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Articles', 'fas fa-list', Article::class);
         yield MenuItem::linkToCrud('Liens utiles', 'fas fa-list', Links::class);
+        yield MenuItem::linkToCrud('Commentaires', 'fas fa-list', Comment::class);
     }
 }
