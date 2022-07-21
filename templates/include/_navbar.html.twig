@@ -23,12 +23,12 @@
                 <a class="nav-link" href="#">Forum</a>
             </li>
             <li class="nav-item d-flex flex-column align-items-center">
-                <a href="{{ path('login')}}"><img class"nav-pics" src="{{ asset('build/images/register.png') }}" alt="Register" width="50px" height="50px"></a>
+                <a href="{{ path('security')}}"><img class"nav-pics" src="{{ asset('build/images/register.png') }}" alt="Register" width="50px" height="50px"></a>
                 {% if app.user %}
                     {{ app.user.nickname }}
                     <a href="{{ path('logout') }}"> Se déconnecter</a>
                 {% else %}
-                    <a class="nav-link" href="{{ path('login')}}">Inscription/Connexion</a>
+                    <a class="nav-link" href="{{ path('security')}}">Inscription/Connexion</a>
                 {% endif %}
             </li>
         </ul>

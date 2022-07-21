@@ -9,8 +9,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class RegisterType extends AbstractType
 {
@@ -87,14 +88,14 @@ class RegisterType extends AbstractType
                         'class' => 'form_label',
                     ],
                     'attr' => [
-                        'placeholder' => 'Confirmation',
+                        'placeholder' => 'Confirmation de ton mot de passe',
                     ],
                 ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'S\'inscrire',
                 'attr' => [
-                    'class' => 'btn btn-primary',
+                    'class' => 'btn btn-outline-warning',
                 ],
             ]);
 

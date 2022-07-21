@@ -5,28 +5,17 @@
 {% block body %}
 <div class="container">
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-4">
             <img src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
+            <h1 class="text-warning text-center mt-5">Inscription</h1>
+            {{ render(controller('App\\Controller\\SecurityController::register')) }}
+        </div>
+        <div class="col-lg-4 d-flex align-items-center">
+            <img src="{{ asset('build/images/sign.png') }}" alt="SignIn">
         </div>
         <div class="col-lg-4">
         <h1 class="text-warning mb-5">Connexion</h1>
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-        <form action="{{ path('login') }}" method="post" class="bg-info p-3 shadow rounded">
-            <div class="form-group mb-5 mt-5">
-                <label for="username">Email</label>
-                <input type="email" id="username"
-                name="_username" placeholder="votremail@endoloris.com"
-                value"{{ last_username }}" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="password">Mot de passe</label>
-                <input type="password" id="password" name="_password" class="form-control">
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Connexion" class="btn btn-outline-warning mt-3">
-            </div>
+        {{ render(controller('App\\Controller\\SecurityController::login')) }}
         </div>
     </div>
     <div class="row mt-5">
@@ -34,7 +23,7 @@
         </div>
         <div class="col-lg-4">
         </div>
-        <div class="col-lg-7">
+        <div class="col-lg-7"> 
             <img src="{{ asset('build/images/arrowdown.png') }}" alt="Arrow">
         </div>
     </div>
