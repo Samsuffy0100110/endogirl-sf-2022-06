@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <a href="/">
+            <img class="img-tall" src="{{ asset('build/images/ribbon.png') }}" alt="ribbon">
+            </a>
+        </div>
+        <div class="col-lg-6 mt-5">
+            <h1 class="text-center text-primary mt-5 mb-5">Redéfinir un mot de passe</h1>
+            {{ form_start(resetForm) }}
+                {{ form_row(resetForm.plainPassword) }}
+                <button class="btn btn-font-primary">Enregistrer</button>
+            {{ form_end(resetForm) }}
+        </div>
+    </div>
+</div>
