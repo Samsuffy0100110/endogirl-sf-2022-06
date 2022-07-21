@@ -3,14 +3,12 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
-use App\Entity\Links;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -33,8 +31,6 @@ class ArticleCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id')
-                ->hideOnForm(),
             TextField::new('title')
                 ->setLabel('Titre'),
             TextEditorField::new('content')
@@ -49,7 +45,7 @@ class ArticleCrudController extends AbstractCrudController
                 ->setLabel('Date de création')
                 ->setFormat('d/m/Y H:i'),
             BooleanField::new('isPublished')
-                ->setLabel('Publié'),
+                ->setLabel('Publié ?'),
                 
         ];
     }
