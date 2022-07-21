@@ -37,27 +37,4 @@ class SecurityController extends AbstractController
         // controller can be blank: it will never be called!
         throw new \Exception('Don\'t forget to activate logout in security.yaml');
     }
-
-    #[Route(name: 'register', methods: ['GET', 'POST'])]
-    public function register(Request $request, UserRepository $userRepository): Response
-    {
-        $user = new User();
-        $form = $this->createForm(RegisterType::class, $user);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->add($user, true);
-            
-            // $user = $form->getData();
-            // $this->addFlash('success', 'Inscription réussie !');
-
-            // $manager->persist($user);
-            // $manager->flush();
-
-            return $this->redirectToRoute('home');
-        }
-        return $this->render('security/register.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
 }

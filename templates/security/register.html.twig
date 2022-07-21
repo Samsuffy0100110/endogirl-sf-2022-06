@@ -1,3 +1,6 @@
 <section class="bg-info p-5 shadow rounded mt-5">
-    {{ form(form) }}
+{% for flash_error in app.flashes('verify_email_error') %}
+<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+{% endfor %}
+{{ form(registrationForm) }}
 </section>
