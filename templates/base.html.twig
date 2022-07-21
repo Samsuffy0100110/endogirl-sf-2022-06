@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>
-			{% block title %}Welcome!
-			{% endblock %}
-		</title>
-		<link
-		rel="icon" href="{{ asset('build/images/ribbon.png') }}">
-		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
-		{% endblock %}
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
-	</head>
-	<body>
-		{% include 'include/_navbar.html.twig' %}
-		<div class="row g-0">
-			<div class="col-lg-2 bg-primary sidebar">
-				{% include 'include/_sidebar.html.twig' %}
-			</div>
-			<div class="col-lg-10">
+<head>
+	<meta charset="UTF-8">
+	<title>
+		{% block title %}Welcome!{% endblock %}
+	</title>
+	<meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="icon" href="{{ asset('build/images/ribbon.png') }}">
+	{% block stylesheets %}
+		{{ encore_entry_link_tags('app') }}
+	{% endblock %}
+	{% block javascripts %}
+		{{ encore_entry_script_tags('app') }}
+	{% endblock %}
+</head>
+<body class="scrollbar" id="style-scroll">
+{% include 'include/_navbar.html.twig' %}
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+            {{ message|raw }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endfor %}
+	<div class="row g-0">
+		<div class="col-lg-2 bg-primary sidebar">
+			{% include 'include/_sidebar.html.twig' %}
+		</div>
+		<div class="col-lg-10">
 			{% include 'include/_navinfo.html.twig' %}
-		{% block body %}{% endblock %}
-		</div>
+		<main>
+			{% block body %}{% endblock %}
+		</main>
+	</div>
 		{% include 'include/_footer.html.twig' %}
-		</div>
-	</body>
+	</div>
+</body>
 </html>
