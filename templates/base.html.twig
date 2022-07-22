@@ -15,7 +15,9 @@
 		{{ encore_entry_script_tags('app') }}
 	{% endblock %}
 </head>
-<body class="scrollbar" id="style-scroll">
+<body class="scrollbar" id="style-scroll"{{ stimulus_controller('symfony/ux-swup/swup', {
+	containers: ['#swup'],
+	}) }}>
 {% include 'include/_navbar.html.twig' %}
 {% for label, messages in app.flashes %}
     {% for message in messages %}
@@ -25,19 +27,17 @@
         </div>
     {% endfor %}
 {% endfor %}
-<div class="container-fluid g-0"{{ stimulus_controller('symfony/ux-swup/swup', {
-	containers: ['#swup'],
-	}) }}>
+<div class="container-fluid g-0">
 	<div class="row g-0">
 		<aside class="col-lg-2 bg-primary sidebar d-none d-lg-block">
 			{% include 'include/_sidebar.html.twig' %}
 		</aside>
-		<div class="col-lg-10 nav-info">
+		<section class="nav-info col-lg-10">
 			{% include 'include/_navinfo.html.twig' %}
-		<main id="swup">
-			{% block body %}{% endblock %}
-		</main>
-		</div>
+			<main id="swup" class="nav-info">
+				{% block body %}{% endblock %}
+			</main>
+		</section>
 	</div>
 </div>
 {% include 'include/_footer.html.twig' %}
