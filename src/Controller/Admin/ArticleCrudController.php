@@ -46,7 +46,6 @@ class ArticleCrudController extends AbstractCrudController
                 ->setFormat('d/m/Y H:i'),
             BooleanField::new('isPublished')
                 ->setLabel('Publié ?'),
-                
         ];
     }
 }

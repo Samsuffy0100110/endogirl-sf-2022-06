@@ -40,5 +40,4 @@ class CommentCrudController extends AbstractCrudController
                 ->setLabel('Publié ?'),
         ];
     }
-    
 }
