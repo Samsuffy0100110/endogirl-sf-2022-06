@@ -25,17 +25,21 @@
         </div>
     {% endfor %}
 {% endfor %}
+<div class="container-fluid g-0"{{ stimulus_controller('symfony/ux-swup/swup', {
+	containers: ['#swup'],
+	}) }}>
 	<div class="row g-0">
-		<div class="col-lg-2 bg-primary sidebar">
+		<aside class="col-lg-2 bg-primary sidebar">
 			{% include 'include/_sidebar.html.twig' %}
-		</div>
-		<div class="col-lg-10">
+		</aside>
+		<div class="col-lg-10 nav-info">
 			{% include 'include/_navinfo.html.twig' %}
-		<main>
+		<main id="swup">
 			{% block body %}{% endblock %}
 		</main>
+		</div>
 	</div>
-		{% include 'include/_footer.html.twig' %}
-	</div>
+</div>
+{% include 'include/_footer.html.twig' %}
 </body>
 </html>
