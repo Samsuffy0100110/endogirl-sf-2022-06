@@ -31,8 +31,11 @@ class ArticleController extends AbstractController
         CommentRepository $commentRepository
         ): Response {
         $article = $articleRepository->find($id);
+        $user = $this->getUser();
         $comment = new Comment();
         $comment->setArticle($article);
+        $comment->setUser($user);
+        $comment->setCreatedAt(new \DateTime());
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
@@ -42,11 +45,11 @@ class ArticleController extends AbstractController
             $this->addFlash('success', 'Merci pour ton commentaire !');
 
             return $this->redirectToRoute('article_show', ['id' => $id]);
-        }
-        
+        } 
         return $this->render('article/show.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
+            'comment' => $comment,
         ]);
     }
 }

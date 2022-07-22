@@ -7,12 +7,13 @@
         <div class="row">
             <div class="col-lg-8 d-flex flex-column align-items-center scrollbar" id="style-scroll">
                 <img src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
+                <h2 class="text-center text-warning mt-5">Tous mes articles</h2>
                 {% for article in articles %}
                 <div class="container mb-5">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-6 d-flex flex-column align-items-center">
                             <a class="text-decoration-none" href="{{ path("article_show", { id: article.id }) }}">
-                            <div class="card mb-3 mt-5" style="max-width: 18rem;">
+                            <div class="card mb-3 mt-5 shadow" style="max-width: 18rem;">
                                 <img src="{{ ('/images/pictures/' ~ article.picture)}}" class="card-img-top" alt="{{ article.title }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ article.title }}</h5>
@@ -21,9 +22,9 @@
                             </div>
                             </a>
                         </div>
-                        <div class="col-6">
+                        <div class="col-6 d-flex flex-column align-items-center">
                             <a class="text-decoration-none" href="{{ path("article_show", { id: article.id }) }}">
-                            <div class="card mb-3 mt-5" style="max-width: 18rem;">
+                            <div class="card mb-3 mt-5 shadow" style="max-width: 18rem;">
                                 <img src="{{ ('/images/pictures/' ~ article.picture)}}" class="card-img-top" alt="{{ article.title }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ article.title }}</h5>
@@ -36,8 +37,8 @@
                 </div> 
                 {% endfor %}
             </div>
-            <div class="col-lg-4">
-                <h1 class="text-warning">Mon Humeur du moment</h1>
+            <div class="col-lg-4 pe-5 ps-5">
+                <h1 class="text-warning text-center">Mon Humeur du&nbspmoment</h1>
                 <p class="text-dark mt-5 mb-5">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
                 <img src="{{ asset('build/images/levitate.png') }}" alt="Mother and Child">
             </div>
