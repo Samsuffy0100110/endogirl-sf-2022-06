@@ -11,7 +11,27 @@
         <div class="col-lg-4">
             <h1 class="text-warning">Forum</h1>
     </div>
-    <h2 class="text-center text-warning">Page en cours de construction</h2>
-    <img style="width: 40rem" src="{{ asset('build/images/warning.png') }}" alt="Warning">
+    <div class="row m-5">
+        <div class="col-lg-8">
+            <h3 class="text-center text-warning mb-5">les Catégories et leurs sujets</h3>
+            <div class="card p-5 shadow rounded">
+                {% for category in categories %}
+                <h4 class="text-warning">{{ category.name }}</h4>
+                    <hr>
+                    {% for subject in category.subjects %}
+                        <p class="text-dark fs-5 mb-5">{{ subject.name }}</p>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h3 class="text-center text-warning mb-5">Les derniers Topics</h3>
+            <div class="card">
+                {% for topic in topics %}
+                    <p class="text-dark fs-5 mb-5">{{ topic.title }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
