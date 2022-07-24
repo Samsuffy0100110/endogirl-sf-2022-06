@@ -15,10 +15,14 @@ class ForumController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(CategoryRepository $category, SubjectRepository $subject, TopicRepository $topic): Response
     {
+        $topics = $topic->findBy(['createdAt' => 'DESC'], 10);
+        $categories = $category->findAll();
+        $subjects = $subject->findBy(['category' => $categories]);
         return $this->render('forum/index.html.twig', [
-            'categories' => $category->findAll(),
-            'subjects' => $subject->findAll(),
-            'topics' => $topic->findAll(),
+            'categories' => $categories,
+            'subjects' => $subjects,
+            'topics' => $topics,
         ]);
+
     }
 }

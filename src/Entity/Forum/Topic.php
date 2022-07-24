@@ -27,7 +27,7 @@ class Topic
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'topics')]
+    #[ORM\ManyToOne(inversedBy: 'topics', targetEntity: Subject::class, cascade: ['persist', 'remove'])]
     private ?Subject $subject = null;
 
     #[ORM\ManyToOne(inversedBy: 'topics')]
