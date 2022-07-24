@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
 use App\Entity\Comment;
 use App\Form\CommentType;
 use App\Repository\ArticleRepository;
@@ -23,14 +24,12 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id<^[0-9]+$>}', name: 'show')]
+    #[Route('/{slug}', name: 'show', methods: ['GET'])]
     public function show(
-        int $id,
-        ArticleRepository $articleRepository,
+        Article $article,
         Request $request,
         CommentRepository $commentRepository
         ): Response {
-        $article = $articleRepository->find($id);
         $user = $this->getUser();
         $comment = new Comment();
         $comment->setArticle($article);
@@ -44,7 +43,7 @@ class ArticleController extends AbstractController
 
             $this->addFlash('success', 'Merci pour ton commentaire !');
 
-            return $this->redirectToRoute('article_show', ['id' => $id]);
+            return $this->redirectToRoute('article_show');
         } 
         return $this->render('article/show.html.twig', [
             'article' => $article,

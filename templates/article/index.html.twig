@@ -12,7 +12,7 @@
                 <div class="container mb-5">
                     <div class="row">
                         <div class="col-6 d-flex flex-column align-items-center">
-                            <a class="text-decoration-none" href="{{ path("article_show", { id: article.id }) }}">
+                            <a class="text-decoration-none" href="{{ path("article_show", { 'slug': article.title }) }}">
                             <div class="card mb-3 mt-5 shadow" style="max-width: 18rem;">
                                 <img src="{{ ('/images/pictures/' ~ article.picture)}}" class="card-img-top" alt="{{ article.title }}">
                                 <div class="card-body">
@@ -23,7 +23,7 @@
                             </a>
                         </div>
                         <div class="col-6 d-flex flex-column align-items-center">
-                            <a class="text-decoration-none" href="{{ path("article_show", { id: article.id }) }}">
+                            <a class="text-decoration-none" href="{{ path("article_show", { 'slug': article.title }) }}">
                             <div class="card mb-3 mt-5 shadow" style="max-width: 18rem;">
                                 <img src="{{ ('/images/pictures/' ~ article.picture)}}" class="card-img-top" alt="{{ article.title }}">
                                 <div class="card-body">

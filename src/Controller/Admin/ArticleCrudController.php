@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 
 class ArticleCrudController extends AbstractCrudController
 {
@@ -45,6 +46,10 @@ class ArticleCrudController extends AbstractCrudController
                 ->setFormat('d/m/Y H:i'),
             BooleanField::new('isPublished')
                 ->setLabel('Publié ?'),
+            SlugField::new('slug')
+                ->setTargetFieldName('title')
+                ->hideOnForm()
+                ->hideOnIndex(),
         ];
     }
 }
