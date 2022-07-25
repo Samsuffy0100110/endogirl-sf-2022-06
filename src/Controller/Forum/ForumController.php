@@ -7,6 +7,8 @@ use App\Entity\Forum\Category;
 use App\Repository\Forum\TopicRepository;
 use App\Repository\Forum\SubjectRepository;
 use App\Repository\Forum\CategoryRepository;
+use App\Service\Slugify;
+use Doctrine\ORM\Mapping\Id;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,23 +29,19 @@ class ForumController extends AbstractController
         ]);
     }
 
-    #[Route('/subject/{slug}', name: 'subject', methods: ['GET'])]
-    public function subject(Subject $subject): Response
+    #[Route('/subject/{slug}', name: 'subject', methods: ['GET'], requirements: ['slug' => '^[a-z0-9-]+$'])]
+    public function subject(Subject $subject, TopicRepository $topicRepository): Response
     {
+        $topics = $topicRepository->createQueryBuilder('t')
+            ->where('t.subject = :subject')
+            ->setParameter('subject', $subject)
+            ->orderBy('t.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+            
         return $this->render('forum/subject.html.twig', [
             'subject' => $subject,
+            'topics' => $topics,
         ]);
     }
-    // #[Route('/category/{slug}', name: 'category')]
-    // public function category(Category $category, SubjectRepository $subject, TopicRepository $topic): Response
-    // {
-    //     $topics = $topic->findAll();
-    //     $subjects = $subject->findAll();
-    //     $topics = $topic->findBy(['subject' => $subjects]);
-    //     return $this->render('forum/category.html.twig', [
-    //         'category' => $category,
-    //         'subjects' => $subjects,
-    //         'topics' => $topics,
-    //     ]);
-    // }
 }

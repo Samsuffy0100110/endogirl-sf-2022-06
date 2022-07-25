@@ -6,6 +6,7 @@ use App\Repository\Forum\SubjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SubjectRepository::class)]
@@ -29,6 +30,7 @@ class Subject
     private Collection $topics;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex(pattern: '/^[a-z0-9\-]+$/')]
     private ?string $slug = null;
 
     public function __construct()

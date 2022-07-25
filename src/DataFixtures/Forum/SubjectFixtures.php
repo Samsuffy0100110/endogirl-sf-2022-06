@@ -122,13 +122,13 @@ class SubjectFixtures extends Fixture
     
     public function load(ObjectManager $manager): void
     {
-        foreach (self::SUBJECTS as $key => $sujet) {
+        foreach (self::SUBJECTS as $sujet) {
             $subject = new Subject();
             $subject->setName($sujet['name']);
             $subject->setSummary($sujet['summary']);
             $subject->setCategory($this->getReference($sujet['category']));
             $subject->setSlug($this->slug->generate($sujet['name']));
-            $this->addReference('subject_' . $key, $subject);
+            $this->addReference($sujet['name'], $subject);
             $manager->persist($subject);
         }
         $manager->flush();
