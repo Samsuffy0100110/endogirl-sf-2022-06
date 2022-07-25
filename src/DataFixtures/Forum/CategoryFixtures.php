@@ -2,25 +2,32 @@
 
 namespace App\DataFixtures\Forum;
 
-use Faker\Factory;
 use App\Entity\Forum\Category;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class CategoryFixtures extends Fixture
 {
+    const CATEGORIES = [
+        'Les enfants',
+        'Douleurs',
+        'La séxualité',
+        'Médecine',
+        'La matérnité',
+        'Les maladies',
+        'Blabla',
+        'Autres',
+        'Par régions',
+        'J\'en peux plus',
+    ];
     public function load(ObjectManager $manager): void
     {
-        $faker = Factory::create('fr_FR');
-
-        for ($i = 0; $i < 10; $i++) {
+        foreach (self::CATEGORIES as $name) {
             $category = new Category();
-            $category->setName($faker->sentence(3));
-            $this->addReference('category_' . $i, $category);
+            $category->setName($name);
+            $this->addReference($name, $category);
             $manager->persist($category);
-
         }
-
         $manager->flush();
     }
 }

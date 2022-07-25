@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
+use App\Service\Slugify;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -48,7 +49,6 @@ class ArticleCrudController extends AbstractCrudController
                 ->setLabel('Publié ?'),
             SlugField::new('slug')
                 ->setTargetFieldName('title')
-                ->hideOnForm()
                 ->hideOnIndex(),
         ];
     }

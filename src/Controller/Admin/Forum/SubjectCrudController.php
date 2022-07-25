@@ -35,7 +35,8 @@ class SubjectCrudController extends AbstractCrudController
             AssociationField::new('category')
                 ->setLabel('Catégorie'),
             SlugField::new('slug')
-                ->setTargetFieldName('name'),
+                ->setTargetFieldName('name')
+                ->hideOnIndex(),
         ];
     }
 
