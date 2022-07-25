@@ -19,7 +19,7 @@
                 <h4 class="text-warning">{{ category.name }}</h4>
                     <hr>
                     {% for subject in category.subjects %}
-                    <a href="{{ path('forum_category', { slug: category.slug })}}">
+                    <a href="{{ path('forum_subject', { 'slug': subject.name })}}">
                         <p class="text-dark fs-5 mb-5">{{ subject.name }}</p>
                     </a>
                     {% endfor %}

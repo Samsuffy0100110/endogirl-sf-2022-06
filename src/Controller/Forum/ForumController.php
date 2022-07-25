@@ -2,6 +2,7 @@
 
 namespace App\Controller\Forum;
 
+use App\Entity\Forum\Subject;
 use App\Entity\Forum\Category;
 use App\Repository\Forum\TopicRepository;
 use App\Repository\Forum\SubjectRepository;
@@ -26,16 +27,23 @@ class ForumController extends AbstractController
         ]);
     }
 
-    #[Route('/category/{slug}', name: 'category')]
-    public function category(Category $category, SubjectRepository $subject, TopicRepository $topic): Response
+    #[Route('/subject/{slug}', name: 'subject', methods: ['GET'])]
+    public function subject(Subject $subject): Response
     {
-        $topics = $topic->findBy(['category' => $category]);
-        $subjects = $subject->findBy(['category' => $category]);
-        $topics = $topic->findBy(['subject' => $subjects]);
-        return $this->render('forum/category.html.twig', [
-            'category' => $category,
-            'subjects' => $subjects,
-            'topics' => $topics,
+        return $this->render('forum/subject.html.twig', [
+            'subject' => $subject,
         ]);
     }
+    // #[Route('/category/{slug}', name: 'category')]
+    // public function category(Category $category, SubjectRepository $subject, TopicRepository $topic): Response
+    // {
+    //     $topics = $topic->findAll();
+    //     $subjects = $subject->findAll();
+    //     $topics = $topic->findBy(['subject' => $subjects]);
+    //     return $this->render('forum/category.html.twig', [
+    //         'category' => $category,
+    //         'subjects' => $subjects,
+    //         'topics' => $topics,
+    //     ]);
+    // }
 }

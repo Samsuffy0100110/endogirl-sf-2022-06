@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 
 class SubjectCrudController extends AbstractCrudController
 {
@@ -33,6 +34,8 @@ class SubjectCrudController extends AbstractCrudController
                 ->setLabel('Déscription du sujet'),
             AssociationField::new('category')
                 ->setLabel('Catégorie'),
+            SlugField::new('slug')
+                ->setTargetFieldName('name'),
         ];
     }
 
