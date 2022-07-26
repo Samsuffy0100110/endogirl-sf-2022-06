@@ -1,37 +1,38 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-<div class="container-fluid">
-<a class="navbar-brand ms-5" href="/"><img src="{{ asset('build/images/ribbon.png') }}" alt="zen" width="30px"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
-        <ul class="navbar-nav navbar-nav collapse navbar-collapse flex-row justify-content-around">
-            <li class="nav-item d-flex flex-column align-items-center">
-                <a href="{{ path('article_index')}}"><img class"nav-pics" src="{{ asset('build/images/news.png') }}" alt="Blog" width="50px" height="50px"></a>
-                <a class="nav-link" href="{{ path('article_index')}}">Mon Humeur</a>
-            </li>
-            <li class="nav-item d-flex flex-column align-items-center">
-                <a href="{{ path('endometriose')}}"><img class"text-center" src="{{ asset('build/images/uterus.png') }}" alt="Utérus" width="50px" height="50px"></a>
-                <a class="nav-link" href="{{ path('endometriose')}}">L'endométriose</a>
-            </li>
-            <li class="nav-item d-flex flex-column align-items-center">
-                <a href="{{ path('contact_new')}}"><img class"nav-pics" src="{{ asset('build/images/contact.png') }}" alt="Contact" width="50px" height="50px"></a>
-                <a class="nav-link" href="{{ path('contact_new')}}">Contactez-Moi</a>
-            </li>
-            <li class="nav-item d-flex flex-column align-items-center">
-                <a href="{{ path('forum_index')}}"><img class"nav-pics" src="{{ asset('build/images/forum.png') }}" alt="Forum" width="50px" height="50px"></a>
-                <a class="nav-link" href="{{ path('forum_index')}}">Forum</a>
-            </li>
-            <li class="nav-item d-flex flex-column align-items-center">
-                <a href="{{ path('security')}}"><img class"nav-pics" src="{{ asset('build/images/register.png') }}" alt="Register" width="50px" height="50px"></a>
-                {% if app.user %}
-                    {{ app.user.nickname }}
-                    <a data-no-swup href="{{ path('logout') }}"> Se déconnecter</a>
-                {% else %}
-                    <a class="nav-link" href="{{ path('security')}}">Inscription/Connexion</a>
-                {% endif %}
-            </li>
-        </ul>
-    </div>
-</div>
+	<div class="container-fluid">
+		<a class="navbar-brand ms-5" href="/"><img src="{{ asset('build/images/ribbon.png') }}" alt="zen" width="30px"></a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav me-auto collapse navbar-collapse mb-2 mb-lg-0 d-flex justify-content-around">
+				<li class="nav-item d-flex flex-column align-items-center">
+					<a href="{{ path('article_index')}}"><img class"nav-pics" src="{{ asset('build/images/news.png') }}" alt="Blog" width="50px" height="50px"></a>
+					<a class="nav-link" href="{{ path('article_index')}}">Mon Humeur</a>
+				</li>
+				<li class="nav-item d-flex flex-column align-items-center">
+					<a href="{{ path('endometriose')}}"><img class"text-center" src="{{ asset('build/images/uterus.png') }}" alt="Utérus" width="50px" height="50px"></a>
+					<a class="nav-link" href="{{ path('endometriose')}}">L'endométriose</a>
+				</li>
+				<li class="nav-item d-flex flex-column align-items-center">
+					<a href="{{ path('contact_new')}}"><img class"nav-pics" src="{{ asset('build/images/contact.png') }}" alt="Contact" width="50px" height="50px"></a>
+					<a class="nav-link" href="{{ path('contact_new')}}">Contactez-Moi</a>
+				</li>
+				<li class="nav-item d-flex flex-column align-items-center">
+					<a href="{{ path('forum_index')}}"><img class"nav-pics" src="{{ asset('build/images/forum.png') }}" alt="Forum" width="50px" height="50px"></a>
+					<a class="nav-link" href="{{ path('forum_index')}}">Forum</a>
+				</li>
+				<li class="nav-item d-flex flex-column align-items-center">
+					<a href="{{ path('security')}}"><img class"nav-pics" src="{{ asset('build/images/register.png') }}" alt="Register" width="50px" height="50px"></a>
+					{% if app.user %}
+						{{ app.user.nickname }}
+						<a data-no-swup href="{{ path('logout') }}">
+							Se déconnecter</a>
+					{% else %}
+						<a class="nav-link" href="{{ path('security')}}">Inscription/Connexion</a>
+					{% endif %}
+				</li>
+			</ul>
+		</div>
+	</div>
 </nav>
