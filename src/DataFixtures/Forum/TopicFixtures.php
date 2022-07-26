@@ -17,6 +17,30 @@ class TopicFixtures extends Fixture
             'reply' => 'Les enfants sont des personnes qui ont un lien avec l\'homme et la femme. Ils sont donc des personnes qui ont un lien avec l\'homme et la femme.',
         ],
         [
+            'subject' => 'Comment leur faire comprendre',
+            'title' => 'Ils sont là',
+            'content' => 'Les enfants sont des personnes qui ont un lien avec l\'homme et la femme. Ils sont donc des personnes qui ont un lien avec l\'homme et la femme.',
+            'reply' => 'Les enfants sont des personnes qui ont un lien avec l\'homme et la femme. Ils sont donc des personnes qui ont un lien avec l\'homme et la femme.',
+        ],
+        [
+            'subject' => 'Comment leur faire comprendre',
+            'title' => 'Ma fille est là',
+            'content' => 'Les enfants sont des personnes qui ont un lien avec l\'homme et la femme. Ils sont donc des personnes qui ont un lien avec l\'homme et la femme.',
+            'reply' => 'Les enfants sont des personnes qui ont un lien avec l\'homme et la femme. Ils sont donc des personnes qui ont un lien avec l\'homme et la femme.',
+        ],
+        [
+            'subject' => 'Comment leur faire comprendre',
+            'title' => 'Mon fils est là',
+            'content' => 'Les enfants sont des personnes qui ont un lien avec l\'homme et la femme. Ils sont donc des personnes qui ont un lien avec l\'homme et la femme.',
+            'reply' => 'Les enfants sont des personnes qui ont un lien avec l\'homme et la femme. Ils sont donc des personnes qui ont un lien avec l\'homme et la femme.',
+        ],
+        [
+            'subject' => 'Comment leur faire comprendre',
+            'title' => 'Le chat est là',
+            'content' => 'Les enfants sont des personnes qui ont un lien avec l\'homme et la femme. Ils sont donc des personnes qui ont un lien avec l\'homme et la femme.',
+            'reply' => 'Les enfants sont des personnes qui ont un lien avec l\'homme et la femme. Ils sont donc des personnes qui ont un lien avec l\'homme et la femme.',
+        ],
+        [
             'subject' => 'Les relations sexuelles',
             'title' => 'La pénétration',
             'content' => 'La pénétration est un acte',

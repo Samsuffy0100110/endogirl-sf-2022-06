@@ -17,7 +17,6 @@ class UserFixtures extends Fixture
         $this->passwordHasher = $passwordHasher;
     }
 
-
     public function load(ObjectManager $manager): void
     {
         // Création d’un utilisateur de type “contributeur” (= auteur)
@@ -25,6 +24,7 @@ class UserFixtures extends Fixture
         $user->setNickname('samsuffy');
         $user->setEmail('user@user.fr');
         $user->setRoles(['ROLE_USER']);
+        $this->addReference('user-samsuffy', $user);
         $hashedPassword = $this->passwordHasher->hashPassword(
             $user,
             'userpassword'
@@ -38,6 +38,7 @@ class UserFixtures extends Fixture
         $admin->setNickname('admin');
         $admin->setEmail('admin@admin.fr');
         $admin->setRoles(['ROLE_ADMIN']);
+        $this->addReference('admin', $admin);
         $hashedPassword = $this->passwordHasher->hashPassword(
             $admin,
             'adminpassword'
@@ -48,6 +49,4 @@ class UserFixtures extends Fixture
         // Sauvegarde des 2 nouveaux utilisateurs :
         $manager->flush();
     }
-
-
 }
