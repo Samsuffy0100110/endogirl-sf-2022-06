@@ -4,9 +4,9 @@
 
 {% block body %}
 <div class="container">
-    <div class="row">
+    <div class="row g-0">
         <div class="col-lg-4">
-            <img src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
+            <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
             <h1 class="text-warning text-center mt-5">Inscription</h1>
             {{ render(controller('App\\Controller\\RegistrationController::register')) }}
         </div>
@@ -18,13 +18,13 @@
         {{ render(controller('App\\Controller\\SecurityController::login')) }}
         </div>
     </div>
-    <div class="row mt-5">
+    <div class="row mt-5 g-0">
         <div class="col-lg-1">
         </div>
         <div class="col-lg-4">
         </div>
         <div class="col-lg-7"> 
-            <img src="{{ asset('build/images/arrowdown.png') }}" alt="Arrow">
+            <img class="img-fluid" src="{{ asset('build/images/arrowdown.png') }}" alt="Arrow">
         </div>
     </div>
 </div>

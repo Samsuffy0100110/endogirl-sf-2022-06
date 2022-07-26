@@ -4,17 +4,17 @@
 
 {% block body %}
     <div class="container-fluid">
-        <div class="row">
+        <div class="row g-0">
             <div class="col-lg-8 d-flex flex-column align-items-center scrollbar" id="style-scroll">
-                <img src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
+                <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
                 <h2 class="text-center text-warning mt-5">Tous mes articles</h2>
                 {% for article in articles %}
                 <div class="container mb-5">
                     <div class="row">
                         <div class="col-6 d-flex flex-column align-items-center">
-                            <a class="text-decoration-none" href="{{ path("article_show", { 'slug': article.title }) }}">
+                            <a class="text-decoration-none" href="{{ path("article_show", { 'slug': article.slug }) }}">
                             <div class="card mb-3 mt-5 shadow" style="max-width: 18rem;">
-                                <img src="{{ ('/images/pictures/' ~ article.picture)}}" class="card-img-top" alt="{{ article.title }}">
+                                <img src="{{ ('/images/pictures/' ~ article.picture)}}" class="card-img-top" alt="{{ article.slug }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ article.title }}</h5>
                                     <p class="card-text"><small class="text-muted">{{ article.createdAt|format_datetime('full', 'short', locale='fr')}}</small></p>
@@ -23,9 +23,9 @@
                             </a>
                         </div>
                         <div class="col-6 d-flex flex-column align-items-center">
-                            <a class="text-decoration-none" href="{{ path("article_show", { 'slug': article.title }) }}">
+                            <a class="text-decoration-none" href="{{ path("article_show", { 'slug': article.slug }) }}">
                             <div class="card mb-3 mt-5 shadow" style="max-width: 18rem;">
-                                <img src="{{ ('/images/pictures/' ~ article.picture)}}" class="card-img-top" alt="{{ article.title }}">
+                                <img src="{{ ('/images/pictures/' ~ article.picture)}}" class="card-img-top" alt="{{ article.slug }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ article.title }}</h5>
                                     <p class="card-text"><small class="text-muted">{{ article.createdAt|format_datetime('full', 'short', locale='fr')}}</small></p>

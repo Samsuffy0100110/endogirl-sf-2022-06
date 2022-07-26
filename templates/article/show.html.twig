@@ -4,11 +4,11 @@
 
 {% block body %}
 <div class="container-fluid">
-    <div class="row">
+    <div class="row g-0">
         <div class="col-lg-1">
         </div>
         <div class="col-lg-6 d-flex flex-column align-items-center">
-            <img src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
+            <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
             <p class="card-text mt-5 text-warning fw-bold">Le {{ article.createdAt|format_datetime('full', 'short', locale='fr')}}</p>
             <p class="text-dark mb-5">{{ article.content|raw }}</p>
         </div>
