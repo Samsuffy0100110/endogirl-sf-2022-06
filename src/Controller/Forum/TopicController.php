@@ -24,7 +24,10 @@ class TopicController extends AbstractController
     #[Route('/new', name: 'forum_topic_new', methods: ['GET', 'POST'])]
     public function new(Request $request, TopicRepository $topicRepository): Response
     {
+        $user = $this->getUser();
         $topic = new Topic();
+        $topic->setCreatedAt(new \DateTime());
+        $topic->setUser($user);
         $form = $this->createForm(TopicType::class, $topic);
         $form->handleRequest($request);
 

@@ -33,9 +33,9 @@ class TopicType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-            ->add('createdAt', DateType::class, [
-                'data' => new DateTime(),
-            ])
+            // ->add('createdAt', DateType::class, [
+            //     'data' => new DateTime(),
+            // ])
             // ->add('subject', EntityType::class, [
             //     'class' => Subject::class,
             //     'choice_label' => 'name',
