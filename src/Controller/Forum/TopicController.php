@@ -37,7 +37,7 @@ class TopicController extends AbstractController
             return $this->redirectToRoute('forum_topic_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('forum/topic/new.html.twig', [
+        return $this->renderForm('forum/_form_topic.html.twig', [
             'topic' => $topic,
             'form' => $form,
         ]);
