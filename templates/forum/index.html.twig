@@ -18,12 +18,23 @@
                 {% for category in categories %}
                 <h4 class="text-warning mt-3">{{ category.name }}</h4>
                     {% for subject in category.subjects %}
-                    <a class="text-decoration-none" href="{{ path('forum_subject', { 'slug': subject.slug })}}">
-                    <div class="card border-secondary mt-2 mb-2">
-                        <h5 class="card-header text-dark mb-2">{{ subject.name }}</h5>
-                        <p class="card-text text-dark mb-2 pe-3 ps-3">{{ subject.summary }}</p>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item ">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button fs-5 collapsed text-dark bg-info border" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    {{ subject.name }}
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <a class="text-decoration-none" href="{{ path('forum_subject', { 'slug': subject.slug })}}">
+                                    <div class="accordion-body">
+                                        <p class="text-dark">{{ subject.summary }}</p>
+                                        <small class="d-flex justify-content-end fw-bold">Voir les topics de ce sujet</small>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    </a>
                     {% endfor %}
                 {% endfor %}
             </div>

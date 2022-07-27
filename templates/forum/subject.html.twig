@@ -17,14 +17,24 @@
         <div class="col-lg-2">
         </div>
         <div class="col-lg-8 mb-5">
-            {% for topic in topics %}
-                <div class="card  rounded shadow bg-info"> 
-                    <div class="card-body d-flex justify-content-between">
-                        <h5 class="card-title">{{ topic.title }}</h5>
-                        <p class="card-text fs-5"><small class="text-muted">Créer le {{ topic.createdAt |format_datetime('full', 'short', locale='fr') }}</small></p>
-                    </div>
-                </div>
-            {% endfor %}
+                <table class="table table-bordered mt-5 bg-primary p-5">
+                    <thead>
+                        <tr>
+                            <th class="text-warning" scope="col">{{ subject.name }}</th>
+                            <th class="text-warning"scope="col">Date de création</th>
+                            <th class="text-warning"scope="col">Auteur</th>
+                        </tr>
+                    </thead>
+                {% for topic in topics %}
+                    <tbody>
+                        <tr>
+                            <td class="text-dark">{{ topic.title }}</td>
+                            <td><small>{{ topic.createdAt |format_datetime('full', 'short', locale='fr') }}</small></td>
+                            <td class="text-dark">{{ topic.user.nickname }}</td>
+                        </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
         </div>
         <div class="col-lg-2">
         </div>
