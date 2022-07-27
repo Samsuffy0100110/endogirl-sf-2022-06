@@ -2,7 +2,10 @@
 
 namespace App\Entity\Forum;
 
+use App\Entity\Forum\Reply;
 use App\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\Forum\TopicRepository;
@@ -21,9 +24,6 @@ class Topic
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $reply = null;
-
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $createdAt = null;
 
@@ -32,6 +32,14 @@ class Topic
 
     #[ORM\ManyToOne(inversedBy: 'topics')]
     private ?User $user = null;
+
+    #[ORM\OneToMany(mappedBy: 'topic', targetEntity: Reply::class)]
+    private Collection $reply;
+
+    public function __construct()
+    {
+        $this->reply = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -58,18 +66,6 @@ class Topic
     public function setContent(string $content): self
     {
         $this->content = $content;
-
-        return $this;
-    }
-
-    public function getReply(): ?string
-    {
-        return $this->reply;
-    }
-
-    public function setReply(string $reply): self
-    {
-        $this->reply = $reply;
 
         return $this;
     }
@@ -106,6 +102,36 @@ class Topic
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reply>
+     */
+    public function getReply(): Collection
+    {
+        return $this->reply;
+    }
+
+    public function addReply(Reply $reply): self
+    {
+        if (!$this->reply->contains($reply)) {
+            $this->reply[] = $reply;
+            $reply->setTopic($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReply(Reply $reply): self
+    {
+        if ($this->reply->removeElement($reply)) {
+            // set the owning side to null (unless already changed)
+            if ($reply->getTopic() === $this) {
+                $reply->setTopic(null);
+            }
+        }
 
         return $this;
     }

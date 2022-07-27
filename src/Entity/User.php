@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Forum\Topic;
+use App\Entity\Forum\Reply;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;
@@ -54,10 +55,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Topic::class)]
     private Collection $topics;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Reply::class)]
+    private Collection $reply;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->topics = new ArrayCollection();
+        $this->reply = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -245,6 +250,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($topic->getUser() === $this) {
                 $topic->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reply>
+     */
+    public function getReply(): Collection
+    {
+        return $this->reply;
+    }
+
+    public function addReply(Reply $reply): self
+    {
+        if (!$this->reply->contains($reply)) {
+            $this->reply[] = $reply;
+            $reply->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReply(Reply $reply): self
+    {
+        if ($this->reply->removeElement($reply)) {
+            // set the owning side to null (unless already changed)
+            if ($reply->getUser() === $this) {
+                $reply->setUser(null);
             }
         }
 
