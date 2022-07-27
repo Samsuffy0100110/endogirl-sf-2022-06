@@ -2,13 +2,13 @@
 
 namespace App\Controller\Forum;
 
+use App\Entity\Forum\Topic;
 use App\Entity\Forum\Subject;
-use App\Entity\Forum\Category;
+use App\Form\Forum\TopicType;
 use App\Repository\Forum\TopicRepository;
 use App\Repository\Forum\SubjectRepository;
 use App\Repository\Forum\CategoryRepository;
-use App\Service\Slugify;
-use Doctrine\ORM\Mapping\Id;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -42,6 +42,28 @@ class ForumController extends AbstractController
         return $this->render('forum/subject.html.twig', [
             'subject' => $subject,
             'topics' => $topics,
+        ]);
+    }
+
+    #[Route('/new', name: 'topic_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, TopicRepository $topicRepository, SubjectRepository $subjectRepository): Response
+    {
+        $user = $this->getUser();
+        $topic = new Topic();
+        $topic->setCreatedAt(new \DateTime());
+        $topic->setUser($user);
+        $form = $this->createForm(TopicType::class, $topic);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $topicRepository->add($topic, true);
+
+            return $this->redirectToRoute('forum_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('forum/new.html.twig', [
+            'topic' => $topic,
+            'form' => $form,
         ]);
     }
 }

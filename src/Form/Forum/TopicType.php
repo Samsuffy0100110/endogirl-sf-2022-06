@@ -10,9 +10,11 @@ use Symfony\Component\Form\AbstractType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class TopicType extends AbstractType
 {
@@ -33,18 +35,21 @@ class TopicType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-            // ->add('createdAt', DateType::class, [
-            //     'data' => new DateTime(),
-            // ])
-            // ->add('subject', EntityType::class, [
-            //     'class' => Subject::class,
-            //     'choice_label' => 'name',
-            //     'placeholder' => 'Choose a subject',
-            // ])
-            // ->add('user', EntityType::class, [
-            //     'class' => User::class,
-            //     'choice_label' => 'nickname',
-            // ])
+            ->add('subject', EntityType::class, [
+                'label' => 'Sujet',
+                'class' => Subject::class,
+                'choice_label' => 'name',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
+            
+            ->add('submit', SubmitType::class, [
+                'label' => 'Envoyer',
+                'attr' => [
+                    'class' => 'btn btn-outline-warning',
+                ],
+            ])
         ;
     }
 
