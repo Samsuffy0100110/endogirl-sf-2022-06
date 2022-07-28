@@ -39,7 +39,35 @@
         </div>
         <div class="col-lg-2">
         </div>
-        <a href="{{ path('forum_topic_new')}}">Créer</a>
+    </div>
+    <div class="row mb-5">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-8">
+            {% if app.user %}
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item bg-info">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button fs-5 collapsed text-dark bg-info border" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Créer un nouveau topic
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <a class="text-decoration-none" href="{{ path('forum_subject', { 'slug': subject.slug })}}">
+                        <div class="accordion-body">
+                            {{ form(form )}}
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div> 
+            {% else %}
+                <hr>
+                <a class="nav-link text-dark btn btn-info mb-5 mt-5" href="{{ path('security')}}">Connecte toi pour créer un topic</a>
+            {% endif %}
+        </div>
+        <div class="col-lg-2">
+        </div>
     </div>
 </div>
 {% endblock %}

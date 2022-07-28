@@ -16,6 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/forum', name: 'forum_')]
 class ForumController extends AbstractController
 {
+
     #[Route('/', name: 'index')]
     public function index(CategoryRepository $category, SubjectRepository $subject, TopicRepository $topic): Response
     {
@@ -29,8 +30,8 @@ class ForumController extends AbstractController
         ]);
     }
 
-    #[Route('/subject/{slug}', name: 'subject', methods: ['GET'], requirements: ['slug' => '^[a-z0-9-]+$'])]
-    public function subject(Subject $subject, TopicRepository $topicRepository): Response
+    #[Route('/subject/{slug}', name: 'subject', methods: ['GET', 'POST'], requirements: ['slug' => '^[a-z0-9-]+$'])]
+    public function subject(Request $request, Subject $subject, TopicRepository $topicRepository): Response
     {
         $topics = $topicRepository->createQueryBuilder('t')
             ->where('t.subject = :subject')
@@ -38,32 +39,47 @@ class ForumController extends AbstractController
             ->orderBy('t.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
+
+            $user = $this->getUser();
+            $topic = new Topic();
+            $topic->setCreatedAt(new \DateTime());
+            $topic->setSubject($subject);
+            $topic->setUser($user);
+            $form = $this->createForm(TopicType::class, $topic);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $topicRepository->add($topic, true);
+
+                return $this->redirectToRoute('forum_subject', ['slug' => $subject->getSlug()]);
+            }
             
         return $this->render('forum/subject.html.twig', [
             'subject' => $subject,
             'topics' => $topics,
+            'form' =>$form->createView(),
         ]);
     }
 
-    #[Route('/new', name: 'topic_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, TopicRepository $topicRepository, SubjectRepository $subjectRepository): Response
-    {
-        $user = $this->getUser();
-        $topic = new Topic();
-        $topic->setCreatedAt(new \DateTime());
-        $topic->setUser($user);
-        $form = $this->createForm(TopicType::class, $topic);
-        $form->handleRequest($request);
+    // #[Route('/new', name: 'topic_new', methods: ['GET', 'POST'])]
+    // public function new(Request $request, TopicRepository $topicRepository, SubjectRepository $subjectRepository): Response
+    // {
+    //     $user = $this->getUser();
+    //     $topic = new Topic();
+    //     $topic->setCreatedAt(new \DateTime());
+    //     $topic->setUser($user);
+    //     $form = $this->createForm(TopicType::class, $topic);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $topicRepository->add($topic, true);
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $topicRepository->add($topic, true);
 
-            return $this->redirectToRoute('forum_index', [], Response::HTTP_SEE_OTHER);
-        }
+    //         return $this->redirectToRoute('forum_index', [], Response::HTTP_SEE_OTHER);
+    //     }
 
-        return $this->renderForm('forum/new.html.twig', [
-            'topic' => $topic,
-            'form' => $form,
-        ]);
-    }
+    //     return $this->renderForm('forum/new.html.twig', [
+    //         'topic' => $topic,
+    //         'form' => $form,
+    //     ]);
+    // }
 }

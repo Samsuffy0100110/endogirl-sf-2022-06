@@ -4,27 +4,32 @@ namespace App\Form\Forum;
 
 use DateTime;
 use App\Entity\User;
+use App\Service\Slugify;
 use App\Entity\Forum\Topic;
 use App\Entity\Forum\Subject;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
+use App\Repository\Forum\SubjectRepository;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use EasyCorp\Bundle\EasyAdminBundle\Form\Type\SlugType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class TopicType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('title', TextType::class, [
                 'label' => 'Titre',
                 'attr' => [
-                    'placeholder' => 'Titre du sujet',
+                    'placeholder' => 'Titre du topic',
                     'class' => 'form-control',
                 ],
             ])
@@ -32,6 +37,14 @@ class TopicType extends AbstractType
                 'label' => 'Contenu',
                 'attr' => [
                     'placeholder' => 'Contenu du sujet',
+                    'class' => 'form-control',
+                ],
+            ])
+            ->add('slug', SlugType::class, [
+                'target' => 'title',
+                'label' => 'Slug',
+                'attr' => [
+                    'placeholder' => 'Slug du topic',
                     'class' => 'form-control',
                 ],
             ])
@@ -43,7 +56,6 @@ class TopicType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-            
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer',
                 'attr' => [
