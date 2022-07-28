@@ -36,6 +36,9 @@ class Topic
     #[ORM\OneToMany(mappedBy: 'topic', targetEntity: Reply::class)]
     private Collection $reply;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->reply = new ArrayCollection();
@@ -132,6 +135,18 @@ class Topic
                 $reply->setTopic(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
