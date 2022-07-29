@@ -25,7 +25,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/{slug}', name: 'show', methods: ['GET'])]
+    #[Route('/{slug}', name: 'show', methods: ['GET', 'POST'])]
     public function show(
         Article $article,
         Request $request,
@@ -44,7 +44,9 @@ class ArticleController extends AbstractController
 
             $this->addFlash('success', 'Merci pour ton commentaire !');
 
-            return $this->redirectToRoute('article_show');
+            return $this->redirectToRoute('article_show', [
+                'slug' => $article->getSlug(),
+            ]);
         } 
         return $this->render('article/show.html.twig', [
             'article' => $article,
