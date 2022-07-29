@@ -30,7 +30,7 @@
                     <tbody>
                         <tr>
                             <td class="text-dark">{{ topic.title }}</td>
-                            <td><small>{{ topic.createdAt |format_datetime('full', 'short', locale='fr') }}</small></td>
+                            <td><small>{{ topic.createdAt|format_datetime('full', 'short', locale='fr') }}</small></td>
                             <td class="text-dark">{{ topic.user.nickname }}</td>
                         </tr>
                     </tbody>
@@ -40,7 +40,7 @@
         <div class="col-lg-2">
         </div>
     </div>
-    <div class="row mb-5">
+    <div class="row mb-5 g-0">
         <div class="col-lg-2">
         </div>
         <div class="col-lg-8">
@@ -53,11 +53,9 @@
                     </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                    <a class="text-decoration-none" href="{{ path('forum_subject', { 'slug': subject.slug })}}">
-                        <div class="accordion-body">
-                            {{ form(form )}}
-                        </div>
-                    </a>
+                    <div class="accordion-body">
+                        {{ form(form )}}
+                    </div>
                 </div>
             </div>
         </div> 
