@@ -4,6 +4,7 @@ namespace App\Entity\Forum;
 
 use App\Entity\Forum\Reply;
 use App\Entity\User;
+use App\Service\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -36,7 +37,7 @@ class Topic
     #[ORM\OneToMany(mappedBy: 'topic', targetEntity: Reply::class)]
     private Collection $reply;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $slug = null;
 
     public function __construct()

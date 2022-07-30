@@ -40,14 +40,6 @@ class TopicType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-            ->add('slug', SlugType::class, [
-                'target' => 'title',
-                'label' => 'Slug',
-                'attr' => [
-                    'placeholder' => 'Slug du topic',
-                    'class' => 'form-control',
-                ],
-            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer',
                 'attr' => [

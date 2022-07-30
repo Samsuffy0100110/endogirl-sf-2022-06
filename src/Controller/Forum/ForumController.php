@@ -61,25 +61,4 @@ class ForumController extends AbstractController
         ]);
     }
 
-    // #[Route('/new', name: 'topic_new', methods: ['GET', 'POST'])]
-    // public function new(Request $request, TopicRepository $topicRepository, SubjectRepository $subjectRepository): Response
-    // {
-    //     $user = $this->getUser();
-    //     $topic = new Topic();
-    //     $topic->setCreatedAt(new \DateTime());
-    //     $topic->setUser($user);
-    //     $form = $this->createForm(TopicType::class, $topic);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $topicRepository->add($topic, true);
-
-    //         return $this->redirectToRoute('forum_index', [], Response::HTTP_SEE_OTHER);
-    //     }
-
-    //     return $this->renderForm('forum/new.html.twig', [
-    //         'topic' => $topic,
-    //         'form' => $form,
-    //     ]);
-    // }
 }
