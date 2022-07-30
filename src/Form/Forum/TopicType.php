@@ -48,14 +48,6 @@ class TopicType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-            ->add('subject', EntityType::class, [
-                'label' => 'Sujet',
-                'class' => Subject::class,
-                'choice_label' => 'name',
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer',
                 'attr' => [
