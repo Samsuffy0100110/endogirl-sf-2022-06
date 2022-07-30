@@ -33,6 +33,9 @@ class ForumController extends AbstractController
     #[Route('/subject/{slug}', name: 'subject', methods: ['GET', 'POST'], requirements: ['slug' => '^[a-z0-9-]+$'])]
     public function subject(Request $request, Subject $subject, TopicRepository $topicRepository): Response
     {
+
+        $topic = $topicRepository->findBy(['subject' => $subject], ['createdAt' => 'DESC']);
+
         $topics = $topicRepository->createQueryBuilder('t')
             ->where('t.subject = :subject')
             ->setParameter('subject', $subject)
@@ -58,7 +61,17 @@ class ForumController extends AbstractController
             'subject' => $subject,
             'topics' => $topics,
             'form' =>$form->createView(),
+            'topic' => $topic,
+            
         ]);
     }
 
+    #[Route('/topic/{slug}', name: 'topic', methods: ['GET'], requirements: ['slug' => '^[a-z0-9-]+$'], defaults: ['slug' => 'default'])]
+    public function topic(Topic $topic, SubjectRepository $subjectRepository): Response
+    {
+        return $this->render('forum/topic.html.twig', [
+            'topic' => $topic,
+            'subject' => $subjectRepository->findOneBy(['slug' => $topic->getSubject()->getSlug()]),
+        ]);
+    }
 }

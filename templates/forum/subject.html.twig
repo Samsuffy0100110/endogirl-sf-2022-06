@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Forum{% endblock %}
+{% block title %}Subject{% endblock %}
 
 {% block body %}
 
@@ -24,6 +24,7 @@
                             <th class="text-warning" scope="col">{{ subject.name }}</th>
                             <th class="text-warning" scope="col">Date de création</th>
                             <th class="text-warning" scope="col">Auteur</th>
+                            <th class="text-warning" scope="col">Actions</th>
                         </tr>
                     </thead>
                 {% for topic in topics %}
@@ -32,6 +33,7 @@
                             <td class="text-dark">{{ topic.title }}</td>
                             <td><small>{{ topic.createdAt|format_datetime('full', 'short', locale='fr') }}</small></td>
                             <td class="text-dark">{{ topic.user.nickname }}</td>
+                            <td><a class="text-decoration-none" href="{{ path('forum_topic', {'slug': topic.slug }) }}">Voir</a></td>
                         </tr>
                     </tbody>
                 {% endfor %}
