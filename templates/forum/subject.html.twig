@@ -30,10 +30,12 @@
                 {% for topic in topics %}
                     <tbody>
                         <tr>
-                            <td class="text-dark">{{ topic.title }}</td>
+                            <td><a class="text-decoration-none" href="{{ path('forum_topic', {'slug': topic.slug }) }}">{{ topic.title }}</a></td>
                             <td><small>{{ topic.createdAt|format_datetime('full', 'short', locale='fr') }}</small></td>
                             <td class="text-dark">{{ topic.user.nickname }}</td>
-                            <td><a class="text-decoration-none" href="{{ path('forum_topic', {'slug': topic.slug }) }}">Voir</a></td>
+                            {% if app.user.id == topic.user.id %}    
+                            <td><a class="text-decoration-none" href="{{ path('forum_topic', {'slug': topic.slug }) }}">Modifier ou voir</a></td>
+                            {% endif %}
                         </tr>
                     </tbody>
                 {% endfor %}
