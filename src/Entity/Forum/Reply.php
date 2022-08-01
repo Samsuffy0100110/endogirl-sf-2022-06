@@ -4,7 +4,7 @@ namespace App\Entity\Forum;
 
 use App\Entity\User;
 use App\Entity\Forum\Topic;
-use App\Repository\ReplyRepository;
+use App\Repository\Forum\ReplyRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 

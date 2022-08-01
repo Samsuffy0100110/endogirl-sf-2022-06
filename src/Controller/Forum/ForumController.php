@@ -67,12 +67,11 @@ class ForumController extends AbstractController
     }
 
     #[Route('/topic/{slug}', name: 'topic', requirements: ['slug' => '^[a-z0-9-]+$'], defaults: ['slug' => 'default'], methods: ['GET', 'POST'])]
-    public function topic(Request $request, Topic $topic, SubjectRepository $subjectRepository, ReplyRepository $replyRepository): Response
+    public function topic(Request $request, Topic $topic, SubjectRepository $subjectRepository, ReplyRepository $replyRepository, Reply $reply): Response
     {
         $reply = new Reply();
         $reply->setTopic($topic);
         $reply->setUser($this->getUser());
-        // $topic->setCreatedAt(new DateTime());
         $form = $this->createForm(ReplyType::class, $reply);
         $form->handleRequest($request);
         
@@ -87,6 +86,25 @@ class ForumController extends AbstractController
             'subject' => $subjectRepository->findOneBy(['slug' => $topic->getSubject()->getSlug()]),
             'form' => $form->createView(),
             'replies' => $replyRepository->findBy(['topic' => $topic]),
+            'reply' => $reply,
+        ]);
+    }
+    
+    #[Route('/reply/{slug}', name: 'reply', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
+    public function editReply(Request $request, Reply $reply, ReplyRepository $replyRepository): Response
+    {
+        $form = $this->createForm(ReplyType::class, $reply);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $replyRepository->add($reply, true);
+
+            return $this->redirectToRoute('forum_topic', ['slug' => $reply->getTopic()->getSlug()]);
+        }
+
+        return $this->render('forum/edit_reply.html.twig', [
+            'reply' => $reply,
+            'form' => $form->createView(),
         ]);
     }
 }
