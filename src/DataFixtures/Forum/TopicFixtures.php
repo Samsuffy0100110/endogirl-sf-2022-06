@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures\Forum;
 
-use Faker\Factory;
 use App\Service\Slugify;
 use App\Entity\Forum\Topic;
 use App\DataFixtures\UserFixtures;

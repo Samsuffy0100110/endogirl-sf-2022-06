@@ -2,12 +2,12 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Article;
 use App\Entity\Comment;
 use App\Form\CommentType;
 use App\Repository\ArticleRepository;
 use App\Repository\CommentRepository;
-use DateTime;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

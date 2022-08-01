@@ -2,8 +2,8 @@
 
 namespace App\Entity\Forum;
 
-use App\Entity\Forum\Reply;
 use App\Entity\User;
+use App\Entity\Forum\Reply;
 use App\Service\Slugify as Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
