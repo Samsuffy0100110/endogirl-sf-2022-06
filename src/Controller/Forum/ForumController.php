@@ -8,6 +8,7 @@ use App\Form\Forum\TopicType;
 use App\Repository\Forum\TopicRepository;
 use App\Repository\Forum\SubjectRepository;
 use App\Repository\Forum\CategoryRepository;
+use DateTime;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,7 +31,7 @@ class ForumController extends AbstractController
         ]);
     }
 
-    #[Route('/subject/{slug}', name: 'subject', methods: ['GET', 'POST'], requirements: ['slug' => '^[a-z0-9-]+$'])]
+    #[Route('/subject/{slug}', name: 'subject', requirements: ['slug' => '^[a-z0-9-]+$'], methods: ['GET', 'POST'])]
     public function subject(Request $request, Subject $subject, TopicRepository $topicRepository): Response
     {
 
@@ -45,7 +46,7 @@ class ForumController extends AbstractController
 
             $user = $this->getUser();
             $topic = new Topic();
-            $topic->setCreatedAt(new \DateTime());
+            $topic->setCreatedAt(new DateTime());
             $topic->setSubject($subject);
             $topic->setUser($user);
             $form = $this->createForm(TopicType::class, $topic);
@@ -66,7 +67,7 @@ class ForumController extends AbstractController
         ]);
     }
 
-    #[Route('/topic/{slug}', name: 'topic', methods: ['GET'], requirements: ['slug' => '^[a-z0-9-]+$'], defaults: ['slug' => 'default'])]
+    #[Route('/topic/{slug}', name: 'topic', requirements: ['slug' => '^[a-z0-9-]+$'], defaults: ['slug' => 'default'], methods: ['GET'])]
     public function topic(Topic $topic, SubjectRepository $subjectRepository): Response
     {
         return $this->render('forum/topic.html.twig', [
