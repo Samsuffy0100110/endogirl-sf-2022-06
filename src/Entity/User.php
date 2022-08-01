@@ -43,14 +43,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Length(min : 3, max : 50)]
     private ?string $nickname = null;
 
-    #[ORM\ManyToOne(inversedBy: 'user')]
-    private ?Forum $forum = null;
-
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class)]
     private Collection $comments;
-
-    #[ORM\Column(type: 'boolean')]
-    private $isVerified = false;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Topic::class)]
     private Collection $topics;
@@ -147,18 +141,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getForum(): ?Forum
-    {
-        return $this->forum;
-    }
-
-    public function setForum(?Forum $forum): self
-    {
-        $this->forum = $forum;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Comment>
      */
@@ -192,18 +174,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString(): string
     {
         return $this->nickname;
-    }
-
-    public function isVerified(): bool
-    {
-        return $this->isVerified;
-    }
-
-    public function setIsVerified(bool $isVerified): self
-    {
-        $this->isVerified = $isVerified;
-
-        return $this;
     }
 
     /**
