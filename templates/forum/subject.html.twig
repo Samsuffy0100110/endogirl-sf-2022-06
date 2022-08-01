@@ -33,9 +33,9 @@
                             <td><a class="text-decoration-none" href="{{ path('forum_topic', {'slug': topic.slug }) }}">{{ topic.title }}</a></td>
                             <td><small>{{ topic.createdAt|format_datetime('full', 'short', locale='fr') }}</small></td>
                             <td class="text-dark">{{ topic.user.nickname }}</td>
-                            {# {% if app.user.id == topic.user.id %}    
+                            {% if app.user.id == topic.user.id and topic.reply != null %}    
                             <td><a class="text-decoration-none" href="{{ path('forum_topic', {'slug': topic.slug }) }}">Modifier ou voir</a></td>
-                            {% endif %} #}
+                            {% endif %}
                         </tr>
                     </tbody>
                 {% endfor %}

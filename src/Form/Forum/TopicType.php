@@ -26,6 +26,8 @@ class TopicType extends AbstractType
                 ],
             ])
             ->add('content', CKEditorType::class, [
+                'attr' => ['data-editor' => true],
+                'config_name' => 'light',
                 'label' => 'Contenu',
                 'attr' => [
                     'placeholder' => 'Contenu du sujet',

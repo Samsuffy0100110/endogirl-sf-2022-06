@@ -35,7 +35,7 @@ class Topic
     private ?User $user = null;
 
     #[ORM\OneToMany(mappedBy: 'topic', targetEntity: Reply::class)]
-    private Collection $reply;
+    private ?Collection $reply;
 
     #[Slugify(propertyName: 'title')]
     #[ORM\Column(length: 255, nullable: true)]
@@ -119,7 +119,7 @@ class Topic
         return $this->reply;
     }
 
-    public function addReply(Reply $reply): self
+    public function addReply(Reply $reply): self|null
     {
         if (!$this->reply->contains($reply)) {
             $this->reply[] = $reply;

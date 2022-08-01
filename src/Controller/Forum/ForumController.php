@@ -66,8 +66,8 @@ class ForumController extends AbstractController
         ]);
     }
 
-    #[Route('/topic/{slug}', name: 'topic', requirements: ['slug' => '^[a-z0-9-]+$'], defaults: ['slug' => 'default'], methods: ['GET', 'POST'])]
-    public function topic(Request $request, Topic $topic, SubjectRepository $subjectRepository, ReplyRepository $replyRepository, Reply $reply): Response
+    #[Route('/topic/{slug}', name: 'topic', requirements: ['slug' => '^[a-z0-9-]+$'], defaults: ['slug' => 'default'], methods: ['GET', 'POST', 'DELETE'])]
+    public function topic(Request $request, Topic $topic, SubjectRepository $subjectRepository, ReplyRepository $replyRepository): Response
     {
         $reply = new Reply();
         $reply->setTopic($topic);
@@ -86,13 +86,13 @@ class ForumController extends AbstractController
             'subject' => $subjectRepository->findOneBy(['slug' => $topic->getSubject()->getSlug()]),
             'form' => $form->createView(),
             'replies' => $replyRepository->findBy(['topic' => $topic]),
-            'reply' => $reply,
         ]);
     }
     
-    #[Route('/reply/{slug}', name: 'reply', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
-    public function editReply(Request $request, Reply $reply, ReplyRepository $replyRepository): Response
+    #[Route('/reply/{id}', name: 'edit_reply', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
+    public function editReply(Request $request, ReplyRepository $replyRepository, TopicRepository $topicRepository): Response
     {
+        $reply = $replyRepository->findOneBy(['id' => $request->get('id')]);
         $form = $this->createForm(ReplyType::class, $reply);
         $form->handleRequest($request);
 
@@ -105,6 +105,17 @@ class ForumController extends AbstractController
         return $this->render('forum/edit_reply.html.twig', [
             'reply' => $reply,
             'form' => $form->createView(),
+            'topic' => $topicRepository->findOneBy(['slug' => $reply->getTopic()->getSlug()]),
         ]);
+    }
+
+    #[Route('/reply/{id}/delete', name: 'delete_reply', methods: ['POST'])]
+    public function deleteReply(Request $request, Reply $reply, ReplyRepository $replyRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $reply->getId(), $request->request->get('_token'))) {
+            $replyRepository->remove($reply, true);
+        }
+
+        return $this->redirectToRoute('forum_topic', ['slug' => $reply->getTopic()->getSlug()]);
     }
 }

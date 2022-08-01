@@ -7,7 +7,7 @@
     <div class="row g-0">
         <div class="col-lg-8 d-flex flex-column align-items-center">
             <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
-            <a class="mt-3 text-dark nav-link fw-bold" href="{{ path('forum_subject', {'slug': subject.slug}) }}">Retour à la liste</a>
+            <a class="mt-3 text-dark nav-link fw-bold" href="{{ path('forum_subject', {'slug': subject.slug}) }}">Retour à la liste des topics du sujet {{ subject.name }}</a>
         </div>
         <div class="col-lg-4">
             <h1 class="text-warning tex-center">{{ topic.title }}</h1>
@@ -33,6 +33,13 @@
                 <h4 class="text-warning bg-light"><strong><i>{{ reply.user.nickname }}</i></strong></h4>
                 <i class="text-dark"><small>Le {{ reply.createdAt|date("m/d/Y", "Europe/Paris")}} à {{ reply.createdAt|date("h:i", "Europe/Paris")}}</small></i>
                 <p class="text-dark mt-5 mb-5">{{ reply.message|raw }}</p>
+                {% if app.user.id == reply.user.id %}
+                <div class="d-flex justify-content-end">
+                    <input type="hidden">
+                    <a href="{{ path('forum_edit_reply', {'id': reply.id}) }}"><button class="btn btn-outline-warning me-5 mt-5">Modifier</button></a>
+                    {{ include('forum/delete_reply.html.twig') }}
+                </div>
+                {% endif %}
                 <hr>
             {% endfor %}
         </div>
@@ -44,7 +51,7 @@
         </div>
         <div class="col-lg-7">
             {% if app.user %}
-                {{ form(form) }}    
+            {{ form(form) }}   
             {% else %}
                 <hr>
                 <a class="nav-link text-dark btn btn-info mb-5 mt-5" href="{{ path('security')}}">Connecte toi pour laisser un message</a>
@@ -53,6 +60,5 @@
         <div class="col-lg-1">
         </div>
     </div>
-    {{ render(controller('App\\Controller\\Forum\\ForumController::editReply')) }}
 </div>
 {% endblock %}
