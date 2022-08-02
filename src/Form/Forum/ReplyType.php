@@ -1,39 +1,47 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Forum;
 
-use App\Entity\Comment;
+use DateTime;
+use App\Entity\Forum\Reply;
 use Symfony\Component\Form\AbstractType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
-class CommentType extends AbstractType
+class ReplyType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('summary', CKEditorType::class, [
+            ->add('message', CKEditorType::class, [
                 'attr' => ['data-editor' => true],
                 'config_name' => 'light',
-                'label' => 'Commentaire',
+                'label' => 'Réponse',
+            ])
+            ->add('createdAt', DateTimeType::class, [
                 'attr' => [
-                    'placeholder' => 'Votre commentaire',
+                    'hidden' => 'hidden',
                 ],
+                'data' => new DateTime(),
+                'label' => false,
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer',
                 'attr' => [
                     'class' => 'btn btn-outline-warning',
                 ],
-            ]);
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Comment::class,
+            'data_class' => Reply::class,
         ]);
     }
 }

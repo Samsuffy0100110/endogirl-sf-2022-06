@@ -3,7 +3,6 @@
 namespace App\Controller\Admin\Forum;
 
 use App\Entity\Forum\Subject;
-use App\Service\Slugify;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;

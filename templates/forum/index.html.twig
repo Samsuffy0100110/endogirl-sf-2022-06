@@ -5,7 +5,7 @@
 {% block body %}
 <div class="container-fluid">
     <div class="row g-0">
-        <div class="col-lg-8">
+        <div class="col-lg-8 d-flex flex-column align-items-center">
             <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
         </div>
         <div class="col-lg-4">
@@ -43,8 +43,9 @@
         <div class="col-lg-4 ps-5">
             <h3 class="text-center text-warning mb-5 mt-5">Les derniers Topics</h3>
             <div class="card p-5 shadow rounded">
-                {% for topic in topics %}
-                    <p class="text-dark fs-5 mb-5">{{ topic.title }}</p>
+                {% for topic in topics|slice(0, 3) %}
+                    {# <p class="text-dark fs-5 mb-5">{{ topic.title }}</p> #}
+                <a class="text-decoration-none" href="{{ path('forum_topic', {'slug': topic.slug }) }}">{{ topic.title }}</a>
                     <hr>
                 {% endfor %}
             </div>

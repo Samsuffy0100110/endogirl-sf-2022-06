@@ -36,7 +36,7 @@
             {% for comment in article.comments %}
             <hr>
                 <i>{{ comment.user }} le : {{ comment.createdAt|format_datetime('full', 'short', locale='fr') }}</i>
-                <p class="text-dark bg-primary mt-2">{{ comment.summary }}</p>
+                <p class="text-dark bg-primary mt-2">{{ comment.summary|raw }}</p>
             {% endfor %}
             {% if app.user %}
                 {{ form(form) }}

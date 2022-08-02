@@ -2,8 +2,9 @@
 
 namespace App\DataFixtures\Forum;
 
-use Faker\Factory;
+use App\Service\Slugify;
 use App\Entity\Forum\Topic;
+use App\DataFixtures\UserFixtures;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
@@ -48,15 +49,23 @@ class TopicFixtures extends Fixture
         ],
     ];
     
+    private Slugify $slug;
+
+    public function __construct(Slugify $slugify)
+    {
+        $this->slug = $slugify;
+    }
+    
     public function load(ObjectManager $manager): void
     {
-        foreach (self::TOPICS as $key => $value) {
+        foreach (self::TOPICS as $value) {
             $topic = new Topic();
             $topic->setTitle($value['title']);
             $topic->setContent($value['content']);
-            $topic->setReply($value['reply']);
             $topic->setCreatedAt(new \DateTime());
             $topic->setSubject($this->getReference($value['subject']));
+            $topic->setSlug($this->slug->generate($value['title']));
+            // $topic->setUser($this->getReference($value['user']));
             $manager->persist($topic);
         }  
         $manager->flush();
@@ -66,6 +75,7 @@ class TopicFixtures extends Fixture
         {
             return [
                 SubjectFixtures::class,
+                UserFixtures::class,
             ];
         }
 }

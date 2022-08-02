@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Article;
 use App\Entity\Comment;
-use App\Service\Slugify;
 use App\Form\CommentType;
 use App\Repository\ArticleRepository;
 use App\Repository\CommentRepository;
@@ -25,7 +25,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/{slug}', name: 'show', methods: ['GET'])]
+    #[Route('/{slug}', name: 'show', methods: ['GET', 'POST'])]
     public function show(
         Article $article,
         Request $request,
@@ -35,7 +35,7 @@ class ArticleController extends AbstractController
         $comment = new Comment();
         $comment->setArticle($article);
         $comment->setUser($user);
-        $comment->setCreatedAt(new \DateTime());
+        $comment->setCreatedAt(new DateTime());
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
@@ -44,7 +44,9 @@ class ArticleController extends AbstractController
 
             $this->addFlash('success', 'Merci pour ton commentaire !');
 
-            return $this->redirectToRoute('article_show');
+            return $this->redirectToRoute('article_show', [
+                'slug' => $article->getSlug(),
+            ]);
         } 
         return $this->render('article/show.html.twig', [
             'article' => $article,

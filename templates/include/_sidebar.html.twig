@@ -1,4 +1,7 @@
 <div class="container-fluid">
+{% if is_granted('ROLE_ADMIN') %}
+    <a class="nav-link text-dark fs-5" href="{{ path('admin') }}">Administration</a>
+{% endif %}
 <section class="d-flex flex-column align-items-center scrollbar" id="style-scroll">
     <h4 class="p-3 text-center text-dark mt-5 mb-5">Liens utiles</h4>
 {{ render(controller('App\\Controller\\HomeController::showLinks')) }}
