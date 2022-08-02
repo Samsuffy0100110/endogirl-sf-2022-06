@@ -33,6 +33,11 @@
                             <td><a class="text-decoration-none" href="{{ path('forum_topic', {'slug': topic.slug }) }}">{{ topic.title }}</a></td>
                             <td><small>{{ topic.createdAt|format_datetime('full', 'short', locale='fr') }}</small></td>
                             <td class="text-dark">{{ topic.user.nickname }}</td>
+                            {% for reply in replies|filter(reply => reply.topic == topic)|slice(0,1) %}
+                                {% if reply.topic == topic %}
+                                    <td class="text-dark">{{ reply.createdAt|format_datetime('full', 'short', locale='fr') }}<br><strong>{{ reply.user }}</strong></td>
+                                {% endif %}
+                            {% endfor %}
                         </tr>
                     </tbody>
                 {% endfor %}

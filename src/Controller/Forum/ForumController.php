@@ -35,7 +35,7 @@ class ForumController extends AbstractController
     }
 
     #[Route('/subject/{slug}', name: 'subject', requirements: ['slug' => '^[a-z0-9-]+$'], methods: ['GET', 'POST'])]
-    public function subject(Request $request, Subject $subject, TopicRepository $topicRepository, Slugify $slugify): Response
+    public function subject(Request $request, Subject $subject, TopicRepository $topicRepository, Slugify $slugify, ReplyRepository $replyRepository): Response
     {
         $topic = $topicRepository->findBy(['subject' => $subject], ['createdAt' => 'DESC']);
 
@@ -45,6 +45,8 @@ class ForumController extends AbstractController
             ->orderBy('t.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
+
+            $replies = $replyRepository->findBy(['topic' => $topics], ['createdAt' => 'DESC']);
 
             $user = $this->getUser();
             $topic = new Topic();
@@ -69,6 +71,7 @@ class ForumController extends AbstractController
             'topics' => $topics,
             'form' =>$form->createView(),
             'topic' => $topic,
+            'replies' => $replies,
         ]);
     }
 
