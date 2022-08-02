@@ -24,7 +24,7 @@
                             <th class="text-warning" scope="col">{{ subject.name }}</th>
                             <th class="text-warning" scope="col">Date de création</th>
                             <th class="text-warning" scope="col">Auteur</th>
-                            <th class="text-warning" scope="col">Actions</th>
+                            <th class="text-warning" scope="col">Dernière réponse</th>
                         </tr>
                     </thead>
                 {% for topic in topics %}
@@ -33,9 +33,6 @@
                             <td><a class="text-decoration-none" href="{{ path('forum_topic', {'slug': topic.slug }) }}">{{ topic.title }}</a></td>
                             <td><small>{{ topic.createdAt|format_datetime('full', 'short', locale='fr') }}</small></td>
                             <td class="text-dark">{{ topic.user.nickname }}</td>
-                            {% if app.user.id == topic.user.id and topic.reply != null %}    
-                            <td><a class="text-decoration-none" href="{{ path('forum_topic', {'slug': topic.slug }) }}">Modifier ou voir</a></td>
-                            {% endif %}
                         </tr>
                     </tbody>
                 {% endfor %}

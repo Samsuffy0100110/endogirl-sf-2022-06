@@ -3,6 +3,7 @@
 namespace App\Controller\Forum;
 
 use DateTime;
+use App\Service\Slugify;
 use App\Entity\Forum\Reply;
 use App\Entity\Forum\Topic;
 use App\Entity\Forum\Subject;
@@ -34,7 +35,7 @@ class ForumController extends AbstractController
     }
 
     #[Route('/subject/{slug}', name: 'subject', requirements: ['slug' => '^[a-z0-9-]+$'], methods: ['GET', 'POST'])]
-    public function subject(Request $request, Subject $subject, TopicRepository $topicRepository): Response
+    public function subject(Request $request, Subject $subject, TopicRepository $topicRepository, Slugify $slugify): Response
     {
         $topic = $topicRepository->findBy(['subject' => $subject], ['createdAt' => 'DESC']);
 
@@ -50,11 +51,16 @@ class ForumController extends AbstractController
             $topic->setCreatedAt(new DateTime());
             $topic->setSubject($subject);
             $topic->setUser($user);
+
             $form = $this->createForm(TopicType::class, $topic);
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+                $slugify = new Slugify();
+                $slug = $slugify->generate($topic->getTitle());
+                $topic->setSlug($slug);
                 $topicRepository->add($topic, true);
+
 
                 return $this->redirectToRoute('forum_subject', ['slug' => $subject->getSlug()]);
             }
@@ -66,7 +72,7 @@ class ForumController extends AbstractController
         ]);
     }
 
-    #[Route('/topic/{slug}', name: 'topic', requirements: ['slug' => '^[a-z0-9-]+$'], defaults: ['slug' => 'default'], methods: ['GET', 'POST', 'DELETE'])]
+    #[Route('/topic/{slug}', name: 'topic', requirements: ['slug' => '^[a-z0-9-]+$'], defaults: ['slug' => 'default'], methods: ['GET', 'POST'])]
     public function topic(Request $request, Topic $topic, SubjectRepository $subjectRepository, ReplyRepository $replyRepository): Response
     {
         $reply = new Reply();
