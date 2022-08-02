@@ -10,7 +10,7 @@
                 <h3 class="text-center text-warning mt-5">Dernier Article</h3>
                 <a class="text-decoration-none" href="{{ path("article_show", { 'slug': article.slug }) }}">
                 <div class="card mb-3 mt-5 shadow" style="max-width: 40rem;">
-                    <img src="{{ ('/images/pictures/' ~ article.picture)}}" class="card-img-top img-fluid" alt="{{ article.title }}">
+                    <img src="{{ ('/images/pictures/' ~ article.picture)|imagine_filter('blog')}}" class="card-img-top img-fluid" alt="{{ article.title }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ article.title }}</h5>
                         <p class="card-text"><small class="text-muted">{{ article.createdAt|format_datetime('full', 'short', locale='fr')}}</small></p>

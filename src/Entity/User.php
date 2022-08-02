@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
-use App\Entity\Forum\Topic;
+use DateTime;
 use App\Entity\Forum\Reply;
+use App\Entity\Forum\Topic;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -15,8 +19,10 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[Vich\Uploadable]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column()]
@@ -51,6 +57,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Reply::class)]
     private Collection $reply;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $avatar = '';
+
+    #[Vich\UploadableField(mapping: 'pictures', fileNameProperty: 'avatar')]
+    #[Assert\Image(mimeTypes: ["image/jpeg", "image/png"], maxSize: "2M", maxSizeMessage: "L'image ne doit pas dépasser 2Mo")]
+    private ?File $avatarFile = null;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?DateTime $updatedAt = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $biography = null;
 
     public function __construct()
     {
@@ -252,6 +271,73 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $reply->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): self
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of imageFile
+     */
+    public function getAvatarFile(): ?File
+    {
+        return $this->avatarFile;
+    }
+
+    /**
+     * Set the value of imageFile
+     *
+     * @return  self
+     */
+    public function setAvatarFile(File $avatar = null)
+    {
+        $this->avatarFile = $avatar;
+        if ($avatar) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+
+    /**
+     * Get the value of updatedAt
+     */
+    public function getUpdatedAt(): ?DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set the value of updatedAt
+     *
+     * @return  self
+     */
+    public function setUpdatedAt(DateTime $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getBiography(): ?string
+    {
+        return $this->biography;
+    }
+
+    public function setBiography(?string $biography): self
+    {
+        $this->biography = $biography;
 
         return $this;
     }
