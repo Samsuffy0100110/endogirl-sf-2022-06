@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProfileController extends AbstractController
 {
     #[Route('/', name: 'dashboard', methods: ['GET', 'POST'])]
-    public function profileView(Request $request, UserRepository $userRepository): Response
+    public function profileEdit(Request $request, UserRepository $userRepository): Response
     {
         $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
@@ -29,6 +29,14 @@ class ProfileController extends AbstractController
         return $this->render('profile/dashboard.html.twig', [
             'user' => $userRepository->findOneBy(['id' => $this->getUser()]),
             'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/view/{id}', name: 'view', methods: ['GET'], requirements: ['id' => '\d+'])]
+    public function ProfileView(User $user): Response
+    {
+        return $this->render('profile/view.html.twig', [
+            'user' => $user,
         ]);
     }
 }

@@ -13,6 +13,7 @@ use App\Repository\Forum\ReplyRepository;
 use App\Repository\Forum\TopicRepository;
 use App\Repository\Forum\SubjectRepository;
 use App\Repository\Forum\CategoryRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
