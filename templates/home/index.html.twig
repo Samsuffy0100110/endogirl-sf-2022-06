@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Endométriose Blog{% endblock %}
+{% block title %}Bienvenue sur endoloris{% endblock %}
 
 {% block body %}
     <div class="container-fluid">
@@ -9,27 +9,27 @@
                 <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
                 <h3 class="text-center text-warning mt-5">Dernier Article</h3>
                 <a class="text-decoration-none" href="{{ path("article_show", { 'slug': article.slug }) }}">
-                <div class="card mb-3 mt-5 shadow" style="max-width: 40rem;">
-                    <img src="{{ ('/images/pictures/' ~ article.picture)|imagine_filter('blog')}}" class="card-img-top img-fluid" alt="{{ article.title }}">
+                <div class="card mb-3 mt-5 shadow rounded" style="max-width: 40rem;">
+                    <img src="{{ ('/images/pictures/' ~ article.picture)}}" class="card-img-top img-fluid" alt="{{ article.title }}">
                     <div class="card-body">
-                        <h5 class="card-title">{{ article.title }}</h5>
-                        <p class="card-text"><small class="text-muted">{{ article.createdAt|format_datetime('full', 'short', locale='fr')}}</small></p>
+                        <h5 class="card-title text-dark">{{ article.title }}</h5>
+                        <i class="card-text text-dark"><small class="text-muted">{{ article.createdAt|format_datetime('full', 'short', locale='fr')}}</small></i>
                     </div>
                 </div>
                 </a>
-                <div class="row">
+                <div class="row g-0 d-flex align-items-center">
                     <div class="col-lg-8">
-                        <img src="{{ asset('build/images/arrowhomedown.png') }}" alt="Arrow">
+                        <img class="img-fluid" src="{{ asset('build/images/arrowhomedown.png') }}" alt="Arrow">
                     </div>
                     <div class="col-lg-4">
-                        <a class="nav-link text-dark fs-5" href="{{ path("article_show", { 'slug': article.title }) }}">Voir L'article</a>
+                        <a class="nav-link text-dark fs-5" href="{{ path("article_show", { 'slug': article.slug }) }}">Voir L'article</a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
-                <h1 class="text-warning">Bienvenue sur endoloris</h1>
-                <p class="text-dark mt-5">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-                <img src="{{ asset('build/images/motherchild.png') }}" alt="Mother and Child">
+                <h1 class="text-warning text-center">Bienvenue sur endoloris</h1>
+                <p class="home-content text-dark mt-5">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+                <img class="mt-5" src="{{ asset('build/images/motherchild.png') }}" alt="Mother and Child">
             </div>
         </div>
     </div>

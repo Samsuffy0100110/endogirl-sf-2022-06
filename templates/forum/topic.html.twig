@@ -30,7 +30,7 @@
         <div class="col-lg-2">
         </div>
     </div>
-    <div class="row g-0 mt-5">
+    <div class="row g-0 mt-2">
         <div class="col-lg-4">
         </div>
         <div class="col-lg-7">
@@ -41,8 +41,9 @@
                     <h4 class="text-warning ps-3"><strong><i>{{ reply.user.nickname }}</i></strong></h4>
                 </div>
                 </a>
-                <i class="text-dark"><small>Le {{ reply.createdAt|date("m/d/Y", "Europe/Paris")}} à {{ reply.createdAt|date("h:i", "Europe/Paris")}}</small></i> 
-                <p class="text-dark mt-5 mb-5">{{ reply.message|raw }}</p>
+                <i class="text-dark"><small>Le {{ reply.createdAt|date("m/d/Y", "Europe/Paris")}} à {{ reply.createdAt|date("h:i", "Europe/Paris")}}</small></i>
+                <hr> 
+                <p class="text-dark">{{ reply.message|raw }}</p>
                 {% if app.user.id == reply.user.id %}
                 <div class="d-flex justify-content-end">
                     <input type="hidden">

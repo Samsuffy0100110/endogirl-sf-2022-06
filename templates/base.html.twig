@@ -1,13 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr" class="h-100">
 <head>
 	<meta charset="UTF-8">
-	<title>
-		{% block title %}Welcome!{% endblock %}
-	</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 	<meta http-equiv="x-ua-compatible" content="ie=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<link rel="icon" href="{{ asset('build/images/ribbon.png') }}">
+	<meta name="description" content="Endoloris est un site de libre expression sur l'endométriose, un lieu de rassemblement pour toutes celles et ceux qui veulent en parler dans une communeauté bienveillante"/>
+	<meta name="revisit-after" content="3 days">
+    <meta name="language" content="fr">
+	<meta name="robots" content="index, follow">
+	<meta name="author" content="Endoloris">
+	<meta name="copyright" content="Endoloris">
+	<meta name="distribution" content="global">
+    <meta name="rating" content="general">
+	<meta property="og:title" content="Endoloris" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://endoloris.fr" />
+	<meta property="og:image" content="{{ absolute_url(asset('build/images/logo.png')) }}" />
+	<meta property="og:description" content="Endoloris est un site de libre expression sur l'endométriose, un lieu de rassemblement pour toutes celles et ceux qui veulent en parler dans une communeauté bienveillante" />
+	<meta property="twitter:title" content="Endoloris" />
+	<meta property="twitter:type" content="website" />
+	<meta property="twitter:url" content="https://endoloris.fr" />
+	<meta property="twitter:image" content="{{ absolute_url(asset('build/images/logo.png')) }}" />
+	<meta property="twitter:description" content="Endoloris est un site de libre expression sur l'endométriose, un lieu de rassemblement pour toutes celles et ceux qui veulent en parler dans une communeauté bienveillante" />
+	<meta property="instagram:title" content="Endoloris" />
+	<meta property="instagram:type" content="website" />
+	<meta property="instagram:url" content="https://endoloris.fr" />
+	<meta property="instagram:image" content="{{ absolute_url(asset('build/images/logo.png')) }}" />
+	<meta property="instagram:description" content="Endoloris est un site de libre expression sur l'endométriose, un lieu de rassemblement pour toutes celles et ceux qui veulent en parler dans une communeauté bienveillante" />
+	<link rel="icon" href="{{ asset('build/images/logo.png') }}">
+	<title>
+		{% block title %}Bienvenue sur endoloris{% endblock %}
+	</title>
 	{% block stylesheets %}
 		{{ encore_entry_link_tags('app') }}
 	{% endblock %}
@@ -15,9 +38,7 @@
 		{{ encore_entry_script_tags('app') }}
 	{% endblock %}
 </head>
-<body class="scrollbar" id="style-scroll"{{ stimulus_controller('symfony/ux-swup/swup', {
-	containers: ['#swup'],
-	}) }}>
+<body class="scrollbar" id="style-scroll">
 {% include 'include/_navbar.html.twig' %}
 {% for label, messages in app.flashes %}
     {% for message in messages %}
@@ -29,12 +50,12 @@
 {% endfor %}
 <div class="container-fluid g-0">
 	<div class="row g-0">
-		<aside class="col-lg-2 bg-primary sidebar d-none d-lg-block">
+		<aside class="col-lg-3 bg-primary sidebar d-none d-lg-block">
 			{% include 'include/_sidebar.html.twig' %}
 		</aside>
-		<section class="nav-info col-lg-10">
+		<section class="nav-info col-lg-9">
 			{% include 'include/_navinfo.html.twig' %}
-			<main id="swup" class="nav-info">
+			<main class="nav-info">
 				{% block body %}{% endblock %}
 			</main>
 		</section>
