@@ -3,5 +3,38 @@
 {% block title %}Profil de {{ user.nickname }}{% endblock %}
 
 {% block body %}
-
+<div class="container-fluid">
+    <div class="row g-0">
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-6 d-flex flex-column align-items-center">
+            <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
+        </div>
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-4">
+            <h1 class="text-warning text-center">Profil de {{ user.nickname }}</h1>
+        </div>
+    </div>
+    <div class="row mt-5 mb-5 g-0">
+        <div class="col-lg-4">
+            <img class="rounded-circle mx-auto d-block shadow" src="{{ ('/images/pictures/' ~ user.avatar)|imagine_filter('profile') }}" alt="{{ user.nickname }}">
+        </div>
+        <div class="col-lg-6 bg-info rounded shadow p-5">
+            <h2 class="text-center text-white fw-bold">Bio de {{ user.nickname }}</h2>
+            <p>{{ user.biography|raw }}</p>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="row mt-5 g-0">
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-7">
+            <img class="img-fluid" src="{{ asset('build/images/arrowdown.png') }}" alt="Arrow">
+        </div>
+    </div>
+</div>
 {% endblock %}
