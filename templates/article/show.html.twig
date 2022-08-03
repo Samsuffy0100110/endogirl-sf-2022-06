@@ -14,22 +14,22 @@
         </div>
         <div class="col-lg-1">
         </div>
-        <div class="col-lg-4 pe-5">
+        <div class="col-lg-4">
             <h1 class="text-warning mb-5">{{ article.title }}</h1>
             <img src="{{ ('/images/pictures/' ~ article.picture)}}" class="card-img-top img-fluid shadow rounded" alt="{{ article.title }}">
         </div>
     </div>
-    <div class="row mt-5">
+    <div class="row mt-5 g-0">
         <div class="col-lg-1">
         </div>
         <div class="col-lg-4">
             <h2 class="text-warning">Laissez un commentaire</h2>
         </div>
         <div class="col-lg-7">
-            <img src="{{ asset('build/images/arrowdown.png') }}" alt="Arrow">
+            <img class="img-fluid" src="{{ asset('build/images/arrowdown.png') }}" alt="Arrow">
         </div>
     </div>
-    <div class="row">
+    <div class="row g-0">
         <div class="col-lg-1">
         </div>
         <div class="col-lg-6 mt-5 comment-scrollbar" id="style-scroll">
@@ -48,7 +48,7 @@
         <div class="col-lg-1">
         </div>
         <div class="col-lg-4 mt-5">
-            <h4 class="text-danger text-center mb-5">Les commentaires sont soumis à une modération</h4>
+            <h4 class="text-secondary fw-bold text-center mb-5">Les commentaires sont soumis à une modération</h4>
             <p class="text-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, veniam ut aspernatur tempore non eaque iste dolore fugit nihil neque, excepturi amet illo, nisi cum aliquid eius quis. Sed, illum?</p>
         </div>
     </div>

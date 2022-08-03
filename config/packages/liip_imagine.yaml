@@ -5,15 +5,26 @@ liip_imagine:
     
     filter_sets:
 
-        home:
-            quality: 75
-            filters:
-
-                thumbnail: { size: [600, 600], mode: outbound, allow_upscale: true }
-
-        blog:
+        profile:
             quality: 75
             filters:
 
                 thumbnail: { size: [400, 400], mode: outbound, allow_upscale: true }
 
+        blog:
+            quality: 75
+            filters:
+
+                thumbnail: { size: [600, 400], mode: outbound, allow_upscale: true }
+
+        avatar:
+            quality: 75
+            filters:
+
+                thumbnail: { size: [50, 50], mode: outbound, allow_upscale: true }
+
+        forum:
+            quality: 75
+            filters:
+
+                thumbnail: { size: [20, 20], mode: outbound, allow_upscale: true }

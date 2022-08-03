@@ -17,7 +17,12 @@
         <div class="col-lg-2">
         </div>
         <div class="col-lg-8">
-            <h3 class="text-warning"><strong><i>{{ topic.user.nickname }}</i></strong></h3>
+            <a class="text-decoration-none" href="{{ path('profile_view', {'id': topic.user.id})}}">
+            <div class="d-flex bg-light align-items-center">
+                <img class"rounded-circle mx-auto d-block shadow" src="{{ ('/images/pictures/' ~ topic.user.avatar)|imagine_filter('avatar') }}" alt="{{ topic.user.nickname }}">
+                <h3 class="text-warning ps-3"><strong><i>{{ topic.user.nickname }}</i></strong></h3>
+            </div>
+            </a>
             <i class="text-dark"><small>Le {{ topic.createdAt|date("m/d/Y", "Europe/Paris")}} à {{ topic.createdAt|date("h:i", "Europe/Paris")}}</small></i>
             <p class="text-dark mt-5 mb-5 fs-5">{{ topic.content|raw }}</p>
             <hr>
@@ -25,14 +30,20 @@
         <div class="col-lg-2">
         </div>
     </div>
-    <div class="row g-0 mt-5">
+    <div class="row g-0 mt-2">
         <div class="col-lg-4">
         </div>
         <div class="col-lg-7">
             {% for reply in replies %}
-                <h4 class="text-warning bg-light"><strong><i>{{ reply.user.nickname }}</i></strong></h4>
+                <a class="text-decoration-none" href="{{ path('profile_view', {'id': reply.user.id})}}">
+                <div class="d-flex bg-light align-items-center">
+                    <img class"rounded-circle mx-auto d-block shadow" src="{{ ('/images/pictures/' ~ reply.user.avatar)|imagine_filter('avatar') }}" alt="{{ reply.user.nickname }}">
+                    <h4 class="text-warning ps-3"><strong><i>{{ reply.user.nickname }}</i></strong></h4>
+                </div>
+                </a>
                 <i class="text-dark"><small>Le {{ reply.createdAt|date("m/d/Y", "Europe/Paris")}} à {{ reply.createdAt|date("h:i", "Europe/Paris")}}</small></i>
-                <p class="text-dark mt-5 mb-5">{{ reply.message|raw }}</p>
+                <hr> 
+                <p class="text-dark">{{ reply.message|raw }}</p>
                 {% if app.user.id == reply.user.id %}
                 <div class="d-flex justify-content-end">
                     <input type="hidden">

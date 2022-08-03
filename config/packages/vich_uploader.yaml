@@ -1,6 +1,7 @@
 vich_uploader:
     db_driver: orm
-
+    metadata:
+        type: attribute #A ajouter
     mappings:
         pictures:
             uri_prefix: /images/pictures

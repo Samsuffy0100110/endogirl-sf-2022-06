@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
-use App\Repository\ArticleRepository;
+use App\Entity\User;
 use App\Repository\LinksRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\ArticleRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
@@ -25,5 +27,13 @@ class HomeController extends AbstractController
         return $this->render('include/_links.html.twig', [
             'links' => $links,
         ]);
-    }   
+    }  
+
+    public function showUser(UserRepository $userRepository): Response
+    {
+        $user = $userRepository->findOneBy(['id' => $this->getUser()]);
+        return $this->render('include/_user.html.twig', [
+            'user' => $user,
+        ]);
+    }
 }
