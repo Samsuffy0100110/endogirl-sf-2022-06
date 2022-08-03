@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTime;
+use Serializable;
 use App\Entity\Forum\Reply;
 use App\Entity\Forum\Topic;
 use Doctrine\DBAL\Types\Types;
@@ -11,16 +12,14 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
-use Serializable;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'Il y à déjà un compte associé à cette adresse email.')]
 #[Vich\Uploadable]
 class User implements UserInterface, PasswordAuthenticatedUserInterface, Serializable
 {
@@ -61,7 +60,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     private Collection $reply;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $avatar = '';
+    private ?string $avatar = 'default.png';
 
     #[Vich\UploadableField(mapping: 'pictures', fileNameProperty: 'avatar')]
     #[Assert\Image(mimeTypes: ["image/jpeg", "image/png"], maxSize: "2M", maxSizeMessage: "L'image ne doit pas dépasser 2Mo")]
