@@ -11,16 +11,18 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
+use Serializable;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 #[Vich\Uploadable]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, Serializable
 {
     
     #[ORM\Id]
@@ -299,6 +301,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Set the value of imageFile
      *
      * @return  self
+
      */
     public function setAvatarFile(File $avatar = null)
     {
@@ -309,7 +312,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->password,
+            $this->nickname,
+            $this->avatar,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+    
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->email,
+            $this->password,
+            $this->nickname,
+            $this->avatar,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized);
+    }
     /**
      * Get the value of updatedAt
      */
