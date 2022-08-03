@@ -4,14 +4,13 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\UX\Dropzone\Form\DropzoneType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class UserType extends AbstractType
 {
@@ -27,11 +26,11 @@ class UserType extends AbstractType
             ->add('nickname', TextType::class, [
                 'label' => 'Pseudo',
             ])
-            ->add('avatarFile', VichFileType::class, [
+            ->add('avatarFile', DropzoneType::class, [
                 'label' => 'Avatar',
-                'required' => false,
-                'allow_delete' => true,
-                'download_uri' => false,
+                'attr' => [
+                    'placeholder' => 'Glissez ici pour uploader votre avatar',
+                ],
             ])
             ->add('biography', CKEditorType::class, [
                 'attr' => ['data-editor' => true],
