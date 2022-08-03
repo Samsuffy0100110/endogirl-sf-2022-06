@@ -28,4 +28,12 @@ class HomeController extends AbstractController
             'links' => $links,
         ]);
     }  
+
+    public function showUser(UserRepository $userRepository): Response
+    {
+        $user = $userRepository->findOneBy(['id' => $this->getUser()]);
+        return $this->render('include/_user.html.twig', [
+            'user' => $user,
+        ]);
+    }
 }
