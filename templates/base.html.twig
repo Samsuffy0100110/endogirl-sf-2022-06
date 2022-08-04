@@ -42,16 +42,16 @@
 {% include 'include/_navbar.html.twig' %}
 <div class="container-fluid g-0">
 	<div class="row g-0">
-		<aside class="col-lg-3 bg-primary sidebar d-none d-lg-block">
+		<aside class="col-lg-2 w-15 bg-primary sidebar d-none d-lg-block">
 			{% include 'include/_sidebar.html.twig' %}
 		</aside>
-		<section class="nav-info col-lg-9">
+		<section class="nav-info col-lg-10 w-85">
 			{% include 'include/_navinfo.html.twig' %}
 			<main class="nav-info">
 				{% block body %}{% endblock %}
 			</main>
-			{% include 'include/_footer.html.twig' %}
 		</section>
+		{% include 'include/_footer.html.twig' %}
 	</div>
 </div>
 </body>

@@ -5,15 +5,15 @@
 {% block body %}
 <div class="container">
     <div class="row g-0">
-        <div class="col-lg-4">
+        <div class="col-lg-4 p-3">
             <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
             <h1 class="text-warning text-center mt-5">Inscription</h1>
             {{ render(controller('App\\Controller\\RegistrationController::register')) }}
         </div>
         <div class="col-lg-4 d-flex align-items-center">
-            <img src="{{ asset('build/images/sign.png') }}" alt="SignIn">
+            <img class="img-fluid" src="{{ asset('build/images/sign.png') }}" alt="SignIn">
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 p-3">
         <h1 class="text-warning mb-5">Connexion</h1>
         {{ render(controller('App\\Controller\\SecurityController::login')) }}
         </div>
