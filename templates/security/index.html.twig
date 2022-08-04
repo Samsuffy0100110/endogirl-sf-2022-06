@@ -8,6 +8,14 @@
         <div class="col-lg-4 p-3">
             <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
             <h1 class="text-warning text-center mt-5">Inscription</h1>
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                        {{ message|raw }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
             {{ render(controller('App\\Controller\\RegistrationController::register')) }}
         </div>
         <div class="col-lg-4 d-flex align-items-center">

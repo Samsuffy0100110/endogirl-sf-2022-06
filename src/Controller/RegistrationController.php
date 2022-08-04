@@ -60,7 +60,11 @@ class RegistrationController extends AbstractController
 
             return $userAuthenticator->authenticateUser($user, $authenticator, $request);
         }
+        if ($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash('secondary', 'Veuillez corriger vos erreurs');
 
+            return $this->redirectToRoute('security');
+        }
         return $this->render('security/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
