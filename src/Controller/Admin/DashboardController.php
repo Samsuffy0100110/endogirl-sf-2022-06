@@ -6,6 +6,8 @@ use App\Entity\Links;
 use App\Entity\Article;
 use App\Entity\Comment;
 use App\Entity\Forum\Category;
+use App\Entity\Forum\Topic;
+use App\Entity\Forum\Reply;
 use App\Entity\Forum\Subject;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -43,7 +45,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('');
         yield MenuItem::linkToCrud('Sujets', 'fas fa-list', Subject::class);
         yield MenuItem::section('');
+        yield MenuItem::linkToCrud('Topics', 'fas fa-list', Topic::class);
+        yield MenuItem::section('');
+        yield MenuItem::linkToCrud('Reponses', 'fas fa-list', Reply::class);
+        yield MenuItem::section('');
         yield MenuItem::linkToRoute('Retour au site', 'fas fa-home', 'home');
-        
     }
 }
