@@ -17,7 +17,7 @@ class Contact
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:"nom où pseudo requis")]
-    #[Assert\Length(min : 3, max : 30)]
+    #[Assert\Length(min : 2, max : 30)]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
@@ -29,7 +29,7 @@ class Contact
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(message:"sujet requis")]
-    #[Assert\Length(min : 3, max : 255)]
+    #[Assert\Length(min : 2, max : 255)]
     private ?string $subject = null;
 
     #[ORM\Column(type: Types::TEXT)]

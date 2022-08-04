@@ -3,14 +3,15 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 
 class ArticleCrudController extends AbstractCrudController
 {
@@ -25,7 +26,8 @@ class ArticleCrudController extends AbstractCrudController
             ->setEntityLabelInPlural('Articles')
             ->setEntityLabelInSingular('Article')
             ->setPageTitle('index', 'Administration des Articles')
-            ->setPaginatorPageSize(10);
+            ->setPaginatorPageSize(10)
+            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
     }
     
     public function configureFields(string $pageName): iterable
@@ -34,7 +36,9 @@ class ArticleCrudController extends AbstractCrudController
             TextField::new('title')
                 ->setLabel('Titre'),
             TextEditorField::new('content')
-                ->setLabel('Contenu'),
+                ->setLabel('Contenu')
+                ->setFormType(CKEditorType::class)
+                ->setFormTypeOptions(['config_name' => 'light']),
             ImageField::new('picture')
                 ->setBasePath('/images/pictures/')
                 ->setUploadDir('public/images/pictures/')
@@ -43,7 +47,8 @@ class ArticleCrudController extends AbstractCrudController
                 ->setHelp('L\'image doit être au format jpg, jpeg, png ou gif et doit faire moins de 2Mo'),
             DateTimeField::new('createdAt')
                 ->setLabel('Date de création')
-                ->setFormat('d/m/Y H:i'),
+                ->setFormat('dd-MM-Y HH:mm')
+                ->setTimezone('Europe/Paris'),
             BooleanField::new('isPublished')
                 ->setLabel('Publié ?'),
             SlugField::new('slug')

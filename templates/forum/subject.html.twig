@@ -31,11 +31,11 @@
                     <tbody>
                         <tr>
                             <td><a class="text-decoration-none" href="{{ path('forum_topic', {'slug': topic.slug }) }}">{{ topic.title }}</a></td>
-                            <td><small>{{ topic.createdAt|format_datetime('full', 'short', locale='fr') }}</small></td>
+                            <td><small>{{ topic.createdAt|format_datetime('full', 'short',  locale='fr', timezone='Europe/Paris') }}</small></td>
                             <td class="text-dark fw-bold"><a class="text-decoration-none" href="{{ path('profile_view', {'id': topic.user.id})}}">{{ topic.user.nickname }}</a></td>
                             {% for reply in replies|filter(reply => reply.topic == topic)|slice(0,1) %}
                                 {% if reply.topic == topic %}
-                                    <td class="text-dark"><strong><a class="text-decoration-none" href="{{ path('profile_view', {'id': reply.user.id})}}">{{ reply.user }}</a></strong><br><i><small>{{ reply.createdAt|format_datetime('full', 'short', locale='fr') }}</i></small></td>
+                                    <td class="text-dark"><strong><a class="text-decoration-none" href="{{ path('profile_view', {'id': reply.user.id})}}">{{ reply.user }}</a></strong><br><i><small>{{ reply.createdAt|format_datetime('full', 'short', locale='fr', timezone='Europe/Paris') }}</i></small></td>
                                 {% endif %}
                             {% endfor %}
                         </tr>

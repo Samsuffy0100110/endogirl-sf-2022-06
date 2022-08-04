@@ -22,6 +22,14 @@
             <img class="rounded-circle mx-auto d-block shadow mb-5" src="{{ ('/images/pictures/' ~ user.avatar)|imagine_filter('profile') }}" alt="{{ user.nickname }}">
         </div>
         <div class="col-lg-6 bg-info rounded shadow p-5">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                        {{ message|raw }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
             {{ form_start(form) }}
             {{ form_widget(form) }}
             {{ form_end(form) }}

@@ -35,9 +35,14 @@ class CommentCrudController extends AbstractCrudController
                 ->setLabel('Commentaire'),
             DateTimeField::new('createdAt')
                 ->setLabel('Date de création')
-                ->setFormat('d/m/Y H:i'),
+                ->setFormat('dd-MM-Y HH:mm')
+                ->setTimezone('Europe/Paris')
+                ->hideOnForm(),
             BooleanField::new('isPublished')
-                ->setLabel('Publié ?'),
+                ->setLabel('Publié ?')
+                ->hideOnIndex()
+                ->hideOnForm()
+                ->setRequired(false),
         ];
     }
 }

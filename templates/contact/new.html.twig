@@ -7,6 +7,14 @@
     <div class="row g-0">
         <div class="col-lg-8 d-flex flex-column align-items-center">
             <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                        {{ message|raw }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
         </div>
         <div class="col-lg-4">
             <h1 class="text-warning">Contactez-Moi !</h1>

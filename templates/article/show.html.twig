@@ -24,6 +24,14 @@
         </div>
         <div class="col-lg-4">
             <h2 class="text-warning">Laissez un commentaire</h2>
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                        {{ message|raw }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
         </div>
         <div class="col-lg-7">
             <img class="img-fluid" src="{{ asset('build/images/arrowdown.png') }}" alt="Arrow">
@@ -35,7 +43,7 @@
         <div class="col-lg-6 mt-5 comment-scrollbar" id="style-scroll">
             {% for comment in article.comments %}
             <hr>
-                <i>{{ comment.user }} le : {{ comment.createdAt|format_datetime('full', 'short', locale='fr') }}</i>
+                <a class="text-decoration-none text-warning fw-bold me-5" href="">{{ comment.user }}</a><i>{{ comment.createdAt|format_datetime('full', 'short', locale='fr', timezone='Europe/Paris') }}</i>
                 <p class="text-dark bg-primary mt-2">{{ comment.summary|raw }}</p>
             {% endfor %}
             {% if app.user %}
