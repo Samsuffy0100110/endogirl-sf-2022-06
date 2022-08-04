@@ -1,5 +1,5 @@
 {% if app.user %}
-	<a href="{{ path('profile_dashboard')}}"><img class"rounded-circle mx-auto d-block shadow" src="{{ ('/images/pictures/' ~ user.avatar)|imagine_filter('avatar') }}" alt="Register"></a>
+	<a href="{{ path('profile_dashboard')}}"><img style="border-radius: 50%" src="{{ ('/images/pictures/' ~ user.avatar)|imagine_filter('avatar') }}" alt="Register"></a>
 {% endif %}
 {% if app.user %}
 	<p class="text-warning fw-bold">{{ app.user.nickname }}</p>
