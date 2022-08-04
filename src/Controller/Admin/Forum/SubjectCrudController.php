@@ -4,10 +4,11 @@ namespace App\Controller\Admin\Forum;
 
 use App\Entity\Forum\Subject;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 
 class SubjectCrudController extends AbstractCrudController
 {
@@ -30,7 +31,7 @@ class SubjectCrudController extends AbstractCrudController
         return [
             TextField::new('name')
                 ->setLabel('Sujet'),
-            TextField::new('summary')
+            TextareaField::new('summary')
                 ->setLabel('Déscription du sujet'),
             AssociationField::new('category')
                 ->setLabel('Catégorie'),

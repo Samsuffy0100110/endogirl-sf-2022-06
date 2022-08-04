@@ -44,6 +44,7 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
+            $user->setRoles(['ROLE_USER']);
             $user->setPassword($userPasswordHasher->hashPassword($user, $form->get('plainPassword')->getData()));
 
             $entityManager->persist($user);
@@ -57,9 +58,15 @@ class RegistrationController extends AbstractController
                 ->htmlTemplate('security/confirmation_email.html.twig'));
             // do anything else you need here, like send an email
 
+            $this->addFlash('success', 'Bienvenue sur Endoloris, Un email de confirmation vous a été envoyé');
+
             return $userAuthenticator->authenticateUser($user, $authenticator, $request);
         }
+        if ($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash('danger', 'Identifiants incorrects');
 
+            return $this->redirectToRoute('security');
+        }
         return $this->render('security/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);

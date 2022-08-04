@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class RegistrationFormType extends AbstractType
 {
@@ -92,6 +93,10 @@ class RegistrationFormType extends AbstractType
                         'minMessage' => 'Mot de passe trop court',
                         'maxMessage' => 'Mot de passe trop long',
                     ]),
+                    new Regex([
+                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/',
+                        'message' => 'Votre mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial',
+                    ]),
                 ],
             ],
             'second_options' => [
@@ -116,23 +121,13 @@ class RegistrationFormType extends AbstractType
                         'maxMessage' => 'Confirmation trop longue',
                     ]),
                 ],
+                'invalid_message' => 'Les mots de passe ne correspondent pas',
+                'help' => 'Les mots de passe doivent être identiques et doivent contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial',
+                'attr' => [
+                    'class' => 'text-danger',
+                ],
             ],
         ])
-        // ->add('plainPassword', PasswordType::class, [
-        //     'label' => 'Mot de passe',
-        //     'mapped' => false,
-        //     'attr' => ['autocomplete' => 'new-password'],
-        //     'constraints' => [
-        //         new NotBlank([
-        //             'message' => 'Merci d\'entrer un mot de passe',
-        //         ]),
-        //         new Length([
-        //             'min' => 3,
-        //             'minMessage' => 'Your password should be at least {{ limit }} characters',
-        //             'max' => 50,
-        //         ])
-        //     ],
-        // ])
         ->add('submit', SubmitType::class, [
             'label' => 'S\'inscrire',
             'attr' => [

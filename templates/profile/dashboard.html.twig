@@ -10,6 +10,14 @@
         </div>
         <div class="col-lg-6 d-flex flex-column align-items-center">
             <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                        {{ message|raw }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
         </div>
         <div class="col-lg-1">
         </div>

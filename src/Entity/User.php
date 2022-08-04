@@ -72,6 +72,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $biography = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $isVerified = null;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -364,6 +367,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     public function setBiography(?string $biography): self
     {
         $this->biography = $biography;
+
+        return $this;
+    }
+
+    public function isIsVerified(): ?bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(?bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }
