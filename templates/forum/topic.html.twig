@@ -24,7 +24,9 @@
             </div>
             </a>
             <i class="text-dark"><small>Le {{ topic.createdAt|format_datetime('full', 'short',  locale='fr', timezone='Europe/Paris') }}</small></i>
-            <p class="text-dark mt-5 mb-5 fs-5">{{ topic.content|raw }}</p>
+            <div class="card shadow p-1 fs-5 text-dark">
+                <p>{{ topic.content|raw }}</p>
+            </div>
             <hr>
         </div>
         <div class="col-lg-2">
@@ -42,14 +44,18 @@
                 </div>
                 </a>
                 <i class="text-dark"><small>Le {{ reply.createdAt|format_datetime('full', 'short',  locale='fr', timezone='Europe/Paris') }}</small></i>
-                <hr> 
-                <p class="text-dark">{{ reply.message|raw }}</p>
+                <hr>
+                <div class="card shadow p-1 text-dark fs-5">
+                    <p>{{ reply.message|raw }}</p>
+                </div>
                 {% if app.user.id == reply.user.id %}
                 <div class="d-flex justify-content-end">
                     <input type="hidden">
                     <a href="{{ path('forum_edit_reply', {'id': reply.id}) }}"><button class="btn btn-outline-warning me-5 mt-5">Modifier</button></a>
                     {{ include('forum/delete_reply.html.twig') }}
                 </div>
+                {% else %}
+                <hr>
                 {% endif %}
                 <hr>
             {% endfor %}
