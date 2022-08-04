@@ -1,7 +1,9 @@
 <footer>
-    <div class="p-2 bg-primary text-end d-flex justify-content-between">
+    <div class="p-2 bg-primary text-end d-flex justify-content-between align-items-center">
+        <p class="text-dark mt-3">&copy; {{ "now"|date("Y")}} <strong class="text-warning">Endoloris</strong></p>
         <a href="https://fr-fr.facebook.com/"><img src="{{ asset('build/images/facebook.png') }}" alt="Facebook" style="width: 40px;"></a>
         <a href="https://www.instagram.com/?hl=fr"><img src="{{ asset('build/images/instagram.png') }}" alt="Instagram" style="width: 40px;"></a>
+        <a class="text-decoration-none text-dark foot-link" href="{{ path('legals') }}">Mentions Légales</a>
         <a class="foot-link text-dark text-decoration-none fw-bold" style="color: rgba(0, 0, 0, 0.05);" href="https://github.com/Samsuffy0100110">Fait par Samsuffy</a>
     </div>
 </footer>

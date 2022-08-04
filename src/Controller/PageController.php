@@ -13,4 +13,10 @@ class PageController extends AbstractController
     {
         return $this->render('page/endometriosis.html.twig');
     }
+
+    #[Route('/legals', name: 'legals')]
+    public function legals(): Response
+    {
+        return $this->render('page/legals.html.twig');
+    }
 }
