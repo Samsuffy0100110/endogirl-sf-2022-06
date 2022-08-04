@@ -5,6 +5,14 @@
 {% block body %}
     <div class="container-fluid">
         <div class="row g-0">
+        {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                        {{ message|raw }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
             <div class="col-lg-7 p-3 d-flex flex-column align-items-center">
                 <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
                 <h3 class="text-center text-warning mt-5">Dernier Article</h3>

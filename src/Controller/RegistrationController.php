@@ -58,10 +58,12 @@ class RegistrationController extends AbstractController
                 ->htmlTemplate('security/confirmation_email.html.twig'));
             // do anything else you need here, like send an email
 
+            $this->addFlash('success', 'Bienvenue sur Endoloris, Un email de confirmation vous a été envoyé');
+
             return $userAuthenticator->authenticateUser($user, $authenticator, $request);
         }
         if ($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash('secondary', 'Veuillez corriger vos erreurs');
+            $this->addFlash('danger', 'Identifiants incorrects');
 
             return $this->redirectToRoute('security');
         }
