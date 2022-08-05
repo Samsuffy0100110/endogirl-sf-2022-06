@@ -123,9 +123,6 @@ class RegistrationFormType extends AbstractType
                 ],
                 'invalid_message' => 'Les mots de passe ne correspondent pas',
                 'help' => 'Les mots de passe doivent être identiques et doivent contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial',
-                'attr' => [
-                    'class' => 'text-danger',
-                ],
             ],
         ])
         ->add('submit', SubmitType::class, [
