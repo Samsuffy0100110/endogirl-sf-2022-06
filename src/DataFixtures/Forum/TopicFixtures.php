@@ -71,11 +71,11 @@ class TopicFixtures extends Fixture
         $manager->flush();
     }
 
-        public function getDependencies()
-        {
-            return [
-                SubjectFixtures::class,
-                UserFixtures::class,
-            ];
-        }
+    public function getDependencies()
+    {
+        return [
+            SubjectFixtures::class,
+            UserFixtures::class,
+        ];
+    }
 }

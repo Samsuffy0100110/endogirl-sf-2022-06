@@ -22,8 +22,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ForumController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(CategoryRepository $category, SubjectRepository $subject, TopicRepository $topic): Response
-    {
+    public function index(
+        CategoryRepository $category,
+        SubjectRepository $subject,
+        TopicRepository $topic
+        ): Response {
         $topics = $topic->findBy([], ['createdAt' => 'DESC']);
         $categories = $category->findAll();
         $subjects = $subject->findBy(['category' => $categories]);
@@ -35,10 +38,14 @@ class ForumController extends AbstractController
     }
 
     #[Route('/subject/{slug}', name: 'subject', requirements: ['slug' => '^[a-z0-9-]+$'], methods: ['GET', 'POST'])]
-    public function subject(Request $request, Subject $subject, TopicRepository $topicRepository, Slugify $slugify, ReplyRepository $replyRepository): Response
-    {
+    public function subject(
+        Request $request,
+        Subject $subject,
+        TopicRepository $topicRepository,
+        Slugify $slugify,
+        ReplyRepository $replyRepository
+        ): Response {
         $topic = $topicRepository->findBy(['subject' => $subject], ['createdAt' => 'DESC']);
-
         $topics = $topicRepository->createQueryBuilder('t')
             ->where('t.subject = :subject')
             ->setParameter('subject', $subject)
@@ -47,7 +54,6 @@ class ForumController extends AbstractController
             ->getResult();
 
             $replies = $replyRepository->findBy(['topic' => $topics], ['createdAt' => 'DESC']);
-
             $user = $this->getUser();
             $topic = new Topic();
             $topic->setCreatedAt(new DateTime());
@@ -62,8 +68,6 @@ class ForumController extends AbstractController
                 $slug = $slugify->generate($topic->getTitle());
                 $topic->setSlug($slug);
                 $topicRepository->add($topic, true);
-
-
                 return $this->redirectToRoute('forum_subject', ['slug' => $subject->getSlug()]);
             }
         return $this->render('forum/subject.html.twig', [
@@ -76,8 +80,12 @@ class ForumController extends AbstractController
     }
 
     #[Route('/topic/{slug}', name: 'topic', requirements: ['slug' => '^[a-z0-9-]+$'], defaults: ['slug' => 'default'], methods: ['GET', 'POST'])]
-    public function topic(Request $request, Topic $topic, SubjectRepository $subjectRepository, ReplyRepository $replyRepository): Response
-    {
+    public function topic(
+        Request $request,
+        Topic $topic,
+        SubjectRepository $subjectRepository,
+        ReplyRepository $replyRepository
+        ): Response {
         $reply = new Reply();
         $reply->setTopic($topic);
         $reply->setUser($this->getUser());
@@ -86,10 +94,8 @@ class ForumController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
             $replyRepository->add($reply, true);
-
             return $this->redirectToRoute('forum_topic', ['slug' => $topic->getSlug()]);
         }
-
         return $this->render('forum/topic.html.twig', [
             'topic' => $topic,
             'subject' => $subjectRepository->findOneBy(['slug' => $topic->getSubject()->getSlug()]),
@@ -107,10 +113,8 @@ class ForumController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $replyRepository->add($reply, true);
-
             return $this->redirectToRoute('forum_topic', ['slug' => $reply->getTopic()->getSlug()]);
         }
-
         return $this->render('forum/edit_reply.html.twig', [
             'reply' => $reply,
             'form' => $form->createView(),

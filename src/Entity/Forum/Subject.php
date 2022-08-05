@@ -51,7 +51,6 @@ class Subject
     public function setName(string $name): self
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -63,7 +62,6 @@ class Subject
     public function setSummary(?string $summary): self
     {
         $this->summary = $summary;
-
         return $this;
     }
 
@@ -75,7 +73,6 @@ class Subject
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
-
         return $this;
     }
 
@@ -93,7 +90,6 @@ class Subject
             $this->topics[] = $topic;
             $topic->setSubject($this);
         }
-
         return $this;
     }
 
@@ -105,7 +101,6 @@ class Subject
                 $topic->setSubject(null);
             }
         }
-
         return $this;
     }
 
@@ -117,7 +112,6 @@ class Subject
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
-
         return $this;
     }
 

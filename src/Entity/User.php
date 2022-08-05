@@ -95,7 +95,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -124,7 +123,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-
         return $this;
     }
 
@@ -139,7 +137,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
         return $this;
     }
 
@@ -160,7 +157,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     public function setNickname(string $nickname): self
     {
         $this->nickname = $nickname;
-
         return $this;
     }
 
@@ -178,7 +174,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
             $this->comments[] = $comment;
             $comment->setUser($this);
         }
-
         return $this;
     }
 
@@ -190,7 +185,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
                 $comment->setUser(null);
             }
         }
-
         return $this;
     }
 
@@ -215,7 +209,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     public function setPlainPassword($plainPassword)
     {
         $this->plainPassword = $plainPassword;
-
         return $this;
     }
 
@@ -233,7 +226,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
             $this->topics[] = $topic;
             $topic->setUser($this);
         }
-
         return $this;
     }
 
@@ -245,7 +237,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
                 $topic->setUser(null);
             }
         }
-
         return $this;
     }
 
@@ -263,7 +254,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
             $this->reply[] = $reply;
             $reply->setUser($this);
         }
-
         return $this;
     }
 
@@ -275,7 +265,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
                 $reply->setUser(null);
             }
         }
-
         return $this;
     }
 
@@ -287,7 +276,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
-
         return $this;
     }
 
@@ -355,7 +343,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     public function setUpdatedAt(DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
 
@@ -367,7 +354,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     public function setBiography(?string $biography): self
     {
         $this->biography = $biography;
-
         return $this;
     }
 
@@ -379,7 +365,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     public function setIsVerified(?bool $isVerified): self
     {
         $this->isVerified = $isVerified;
-
         return $this;
     }
 }

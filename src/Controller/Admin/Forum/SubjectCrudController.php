@@ -40,5 +40,4 @@ class SubjectCrudController extends AbstractCrudController
                 ->hideOnIndex(),
         ];
     }
-
 }

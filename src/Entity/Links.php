@@ -33,7 +33,6 @@ class Links
     public function setLink(?string $link): self
     {
         $this->link = $link;
-
         return $this;
     }
 
@@ -45,7 +44,6 @@ class Links
     public function setSummary(?string $summary): self
     {
         $this->summary = $summary;
-
         return $this;
     }
 }

@@ -41,9 +41,7 @@ class ArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $commentRepository->add($comment, true);
-
             $this->addFlash('success', 'Merci pour ton commentaire !');
-
             return $this->redirectToRoute('article_show', [
                 'slug' => $article->getSlug(),
             ]);

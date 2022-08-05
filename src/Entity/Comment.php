@@ -42,7 +42,6 @@ class Comment
     public function setSummary(?string $summary): self
     {
         $this->summary = $summary;
-
         return $this;
     }
 
@@ -54,7 +53,6 @@ class Comment
     public function setUser(?User $user): self
     {
         $this->user = $user;
-
         return $this;
     }
 
@@ -66,7 +64,6 @@ class Comment
     public function setArticle(?Article $article): self
     {
         $this->article = $article;
-
         return $this;
     }
 
@@ -78,7 +75,6 @@ class Comment
     public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -90,7 +86,6 @@ class Comment
     public function setIsPublished(?bool $isPublished): self
     {
         $this->isPublished = $isPublished;
-
         return $this;
     }
 }

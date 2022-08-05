@@ -55,7 +55,6 @@ class Article
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
-
         return $this;
     }
 
@@ -67,7 +66,6 @@ class Article
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -79,7 +77,6 @@ class Article
     public function setContent(string $content): self
     {
         $this->content = $content;
-
         return $this;
     }
 
@@ -91,7 +88,6 @@ class Article
     public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -103,7 +99,6 @@ class Article
     public function setIsPublished(?bool $isPublished): self
     {
         $this->isPublished = $isPublished;
-
         return $this;
     }
 
@@ -121,7 +116,6 @@ class Article
             $this->comments[] = $comment;
             $comment->setArticle($this);
         }
-
         return $this;
     }
 
@@ -133,7 +127,6 @@ class Article
                 $comment->setArticle(null);
             }
         }
-
         return $this;
     }
 
@@ -145,7 +138,6 @@ class Article
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
-
         return $this;
     }
 }
