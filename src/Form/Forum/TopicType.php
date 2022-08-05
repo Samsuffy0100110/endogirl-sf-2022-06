@@ -2,11 +2,8 @@
 
 namespace App\Form\Forum;
 
-use DateTime;
-
 use App\Service\Slugify;
 use App\Entity\Forum\Topic;
-use EasyCorp\Bundle\EasyAdminBundle\Form\Type\SlugType;
 use Symfony\Component\Form\AbstractType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;

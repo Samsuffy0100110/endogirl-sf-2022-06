@@ -2,7 +2,6 @@
 
 namespace App\Controller\Admin\Forum;
 
-use DateTime;
 use App\Entity\Forum\Topic;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;

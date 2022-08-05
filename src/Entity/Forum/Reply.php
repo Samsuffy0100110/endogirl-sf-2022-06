@@ -41,7 +41,6 @@ class Reply
     public function setMessage(?string $message): self
     {
         $this->message = $message;
-
         return $this;
     }
 
@@ -53,7 +52,6 @@ class Reply
     public function setUser(?User $user): self
     {
         $this->user = $user;
-
         return $this;
     }
 
@@ -65,7 +63,6 @@ class Reply
     public function setTopic(?Topic $topic): self
     {
         $this->topic = $topic;
-
         return $this;
     }
 
@@ -77,7 +74,6 @@ class Reply
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 }

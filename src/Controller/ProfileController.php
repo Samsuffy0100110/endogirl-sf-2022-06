@@ -22,7 +22,6 @@ class ProfileController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->add($user, true);
-
             $this->addFlash('success', 'Votre profil a bien été mis à jour.');
             return $this->redirectToRoute('profile_dashboard', [], Response::HTTP_SEE_OTHER);
         } 

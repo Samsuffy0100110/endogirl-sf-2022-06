@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Repository\LinksRepository;
 use App\Repository\ArticleRepository;
 use App\Repository\UserRepository;

@@ -59,7 +59,6 @@ class Topic
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -71,7 +70,6 @@ class Topic
     public function setContent(string $content): self
     {
         $this->content = $content;
-
         return $this;
     }
 
@@ -83,7 +81,6 @@ class Topic
     public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -95,7 +92,6 @@ class Topic
     public function setSubject(?Subject $subject): self
     {
         $this->subject = $subject;
-
         return $this;
     }
 
@@ -107,7 +103,6 @@ class Topic
     public function setUser(?User $user): self
     {
         $this->user = $user;
-
         return $this;
     }
 
@@ -125,7 +120,6 @@ class Topic
             $this->reply[] = $reply;
             $reply->setTopic($this);
         }
-
         return $this;
     }
 
@@ -137,7 +131,6 @@ class Topic
                 $reply->setTopic(null);
             }
         }
-
         return $this;
     }
 
@@ -149,7 +142,6 @@ class Topic
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
-
         return $this;
     }
 

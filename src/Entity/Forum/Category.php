@@ -39,7 +39,6 @@ class Category
     public function setName(string $name): self
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -57,7 +56,6 @@ class Category
             $this->subjects[] = $subject;
             $subject->setCategory($this);
         }
-
         return $this;
     }
 
@@ -69,7 +67,6 @@ class Category
                 $subject->setCategory(null);
             }
         }
-
         return $this;
     }
 
