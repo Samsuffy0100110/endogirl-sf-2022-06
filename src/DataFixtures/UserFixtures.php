@@ -19,7 +19,7 @@ class UserFixtures extends Fixture
 
     const USERS = [
         ['nickname' => 'Samsuffy', 'email' => 'samsuffy@gmail.com', 'role' => ['ROLE_USER'], 'password' => 'samsuffy'],
-        ['nickname' => 'admin', 'email' => 'admin@admin.fr', 'role' => ['ROLE_ADMIN'], 'password' => 'admin'],
+        ['nickname' => 'admin', 'email' => 'gaelleyo@gmail.com', 'role' => ['ROLE_ADMIN'], 'password' => 'f6T3265i29'],
         ['nickname' => 'Gaelle', 'email' => 'gaelle@gmail.com', 'role' => ['ROLE_USER'], 'password' => 'gaelle'],
         ['nickname' => 'Alessandra', 'email' => 'alessandra@gmail.com', 'role' => ['ROLE_USER'], 'password' => 'sacha'],
         ['nickname' => 'Matthieu', 'email' => 'matthieu@gmail.com', 'role' => ['ROLE_USER'], 'password' => 'matthieu'],
