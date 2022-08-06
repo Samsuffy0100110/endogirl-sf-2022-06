@@ -52,13 +52,13 @@ class RegistrationController extends AbstractController
 
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('verify_email', $user, (new TemplatedEmail())
-                ->from(new Address('no-reply@endoloris.fr', 'endoloris'))
+                ->from(new Address('no-reply@ndogirl.fr', 'Endogirl'))
                 ->to($user->getEmail())
                 ->subject('Merci de confirmer votre email')
                 ->htmlTemplate('security/confirmation_email.html.twig'));
             // do anything else you need here, like send an email
 
-            $this->addFlash('success', 'Bienvenue sur Endoloris, Un email de confirmation vous a été envoyé');
+            $this->addFlash('success', 'Bienvenue sur Endogirl, Un email de confirmation vous a été envoyé');
 
             return $userAuthenticator->authenticateUser($user, $authenticator, $request);
         }
