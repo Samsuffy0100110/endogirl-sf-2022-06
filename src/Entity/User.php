@@ -21,6 +21,12 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'Il y à déjà un compte associé à cette adresse email.')]
 #[Vich\Uploadable]
+/**
+ * This will suppress all the PMD warnings in
+ * this class.
+ *
+ * @SuppressWarnings(PHPMD)
+ */
 class User implements UserInterface, PasswordAuthenticatedUserInterface, Serializable
 {
     #[ORM\Id]

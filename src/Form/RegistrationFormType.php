@@ -24,16 +24,7 @@ class RegistrationFormType extends AbstractType
                 TextType::class,
                 [
                 'label' => 'Pseudo',
-                'label_attr' => [
-                'class' => 'form_label',
-                ],
                 'required' => true,
-                'attr' => [
-                'placeholder' => 'Ton pseudo',
-                'class' => 'form-control',
-                'minlength' => 3,
-                'maxlength' => 50,
-                ],
                 'constraints' => [
                 new Assert\NotBlank(
                     [
@@ -44,8 +35,6 @@ class RegistrationFormType extends AbstractType
                     [
                     'min' => 3,
                     'max' => 50,
-                    'minMessage' => 'Pseudo trop court',
-                    'maxMessage' => 'Pseudo trop long',
                     ]
                 ),
                 ],
@@ -56,28 +45,11 @@ class RegistrationFormType extends AbstractType
                 EmailType::class,
                 [
                 'label' => 'Email',
-                'label_attr' => [
-                'class' => 'form_label',
-                ],
                 'required' => true,
-                'attr' => [
-                'placeholder' => 'Ton email',
-                'class' => 'form-control',
-                'minlength' => 3,
-                'maxlength' => 50,
-                ],
                 'constraints' => [
                 new Assert\NotBlank(
                     [
                     'message' => 'Email requis',
-                    ]
-                ),
-                new Assert\Length(
-                    [
-                    'min' => 3,
-                    'max' => 50,
-                    'minMessage' => 'Email trop court',
-                    'maxMessage' => 'Email trop long',
                     ]
                 ),
                 new Assert\Email(
@@ -95,49 +67,23 @@ class RegistrationFormType extends AbstractType
                 'type' => PasswordType::class,
                 'first_options' => [
                 'label' => 'Mot de passe',
-                'label_attr' => [
-                    'class' => 'form_label',
-                ],
                 'required' => true,
-                'attr' => [
-                    'class' => 'form-control',
-                    'minlength' => 3,
-                    'maxlength' => 50,
-                ],
                 'constraints' => [
                     new Assert\NotBlank(
                         [
                         'message' => 'Mot de passe requis',
                         ]
                     ),
-                    new Assert\Length(
-                        [
-                        'min' => 3,
-                        'max' => 50,
-                        'minMessage' => 'Mot de passe trop court',
-                        'maxMessage' => 'Mot de passe trop long',
-                        ]
-                    ),
                     new Regex(
                         [
                         'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/',
-                        'message' => 'Votre mot de passe doit contenir au moins une lettre minuscule,
-                        une lettre majuscule, un chiffre et un caractère spécial',
                         ]
                     ),
                 ],
                 ],
                 'second_options' => [
                 'label' => 'Confirmez votre mot de passe',
-                'label_attr' => [
-                    'class' => 'form_label',
-                ],
                 'required' => true,
-                'attr' => [
-                    'class' => 'form-control',
-                    'minlength' => 3,
-                    'maxlength' => 50,
-                ],
                 'constraints' => [
                     new Assert\NotBlank(
                         [
@@ -153,7 +99,6 @@ class RegistrationFormType extends AbstractType
                         ]
                     ),
                 ],
-                'invalid_message' => 'Les mots de passe ne correspondent pas',
                 'help' => 'Les mots de passe doivent être identiques et doivent contenir au moins une lettre minuscule,
                 une lettre majuscule, un chiffre et un caractère spécial',
                 ],
