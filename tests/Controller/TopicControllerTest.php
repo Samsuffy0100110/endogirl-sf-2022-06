@@ -43,14 +43,17 @@ class TopicControllerTest extends WebTestCase
 
         self::assertResponseStatusCodeSame(200);
 
-        $this->client->submitForm('Save', [
+        $this->client->submitForm(
+            'Save',
+            [
             'topic[title]' => 'Testing',
             'topic[content]' => 'Testing',
             'topic[reply]' => 'Testing',
             'topic[createdAt]' => 'Testing',
             'topic[subject]' => 'Testing',
             'topic[user]' => 'Testing',
-        ]);
+            ]
+        );
 
         self::assertResponseRedirects('/forum/topic/');
 
@@ -93,14 +96,17 @@ class TopicControllerTest extends WebTestCase
 
         $this->client->request('GET', sprintf('%s%s/edit', $this->path, $fixture->getId()));
 
-        $this->client->submitForm('Update', [
+        $this->client->submitForm(
+            'Update',
+            [
             'topic[title]' => 'Something New',
             'topic[content]' => 'Something New',
             'topic[reply]' => 'Something New',
             'topic[createdAt]' => 'Something New',
             'topic[subject]' => 'Something New',
             'topic[user]' => 'Something New',
-        ]);
+            ]
+        );
 
         self::assertResponseRedirects('/forum/topic/');
 

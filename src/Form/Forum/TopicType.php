@@ -23,35 +23,46 @@ class TopicType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class, [
+            ->add(
+                'title',
+                TextType::class,
+                [
                 'label' => 'Titre',
                 'attr' => [
                     'placeholder' => 'Titre du topic',
                     'class' => 'form-control',
                 ],
-            ])
-            ->add('content', CKEditorType::class, [
+                ]
+            )
+            ->add(
+                'content',
+                CKEditorType::class,
+                [
                 'attr' => ['data-editor' => true],
                 'config_name' => 'light',
                 'label' => 'Contenu',
-                'attr' => [
-                    'placeholder' => 'Contenu du sujet',
-                    'class' => 'form-control',
-                ],
-            ])
-            ->add('submit', SubmitType::class, [
+                'placeholder' => 'Contenu du sujet',
+                'class' => 'form-control',
+                ]
+            )
+            ->add(
+                'submit',
+                SubmitType::class,
+                [
                 'label' => 'Envoyer',
                 'attr' => [
                     'class' => 'btn btn-outline-warning',
                 ],
-            ])
-        ;
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'data_class' => Topic::class,
-        ]);
+            ]
+        );
     }
 }

@@ -17,39 +17,61 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class, [
+            ->add(
+                'email',
+                EmailType::class,
+                [
                 'label' => 'Email',
                 'attr' => [
                     'placeholder' => 'Email',
                 ],
-            ])
-            ->add('nickname', TextType::class, [
+                ]
+            )
+            ->add(
+                'nickname',
+                TextType::class,
+                [
                 'label' => 'Pseudo',
-            ])
-            ->add('avatarFile', DropzoneType::class, [
+                ]
+            )
+            ->add(
+                'avatarFile',
+                DropzoneType::class,
+                [
                 'label' => 'Avatar',
                 'attr' => [
                     'placeholder' => 'Glissez ici pour uploader votre avatar',
                 ],
-            ])
-            ->add('biography', CKEditorType::class, [
+                ]
+            )
+            ->add(
+                'biography',
+                CKEditorType::class,
+                [
                 'attr' => ['data-editor' => true],
                 'config_name' => 'light',
                 'label' => 'Un petit mot sur vous ?',
-            ])
-            ->add('submit', SubmitType::class, [
+                ]
+            )
+            ->add(
+                'submit',
+                SubmitType::class,
+                [
                 'label' => 'Modifier',
                 'attr' => [
                     'class' => 'btn btn-outline-warning',
                 ],
-            ]);
+                ]
+            );
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'data_class' => User::class,
-        ]);
+            ]
+        );
     }
 }

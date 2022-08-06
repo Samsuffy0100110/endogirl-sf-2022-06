@@ -93,14 +93,6 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 ## Versioning
 
 
-
-## How to use this project
-
-1. Go to localhost:8000/
-2. email : admin@admin.fr
-3. password : admin
-
-
 ## Issues
 
 -Fix grumph install dependencies

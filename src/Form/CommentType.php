@@ -14,26 +14,34 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('summary', CKEditorType::class, [
+            ->add(
+                'summary',
+                CKEditorType::class,
+                [
                 'attr' => ['data-editor' => true],
                 'config_name' => 'light',
                 'label' => 'Commentaire',
-                'attr' => [
-                    'placeholder' => 'Votre commentaire',
-                ],
-            ])
-            ->add('submit', SubmitType::class, [
+                'placeholder' => 'Votre commentaire',
+                ]
+            )
+            ->add(
+                'submit',
+                SubmitType::class,
+                [
                 'label' => 'Envoyer',
                 'attr' => [
                     'class' => 'btn btn-outline-warning',
                 ],
-            ]);
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'data_class' => Comment::class,
-        ]);
+            ]
+        );
     }
 }

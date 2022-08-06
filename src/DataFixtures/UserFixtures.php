@@ -9,15 +9,14 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture
 {
-    
     private UserPasswordHasherInterface $passwordHasher;
 
-    public function __construct(UserPasswordHasherInterface $passwordHasher) 
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
         $this->passwordHasher = $passwordHasher;
     }
 
-    const USERS = [
+    public const USERS = [
         ['nickname' => 'Samsuffy', 'email' => 'samsuffy@gmail.com', 'role' => ['ROLE_USER'], 'password' => 'samsuffy'],
         ['nickname' => 'admin', 'email' => 'gaelleyo@gmail.com', 'role' => ['ROLE_ADMIN'], 'password' => 'f6T3265i29'],
         ['nickname' => 'Gaelle', 'email' => 'gaelle@gmail.com', 'role' => ['ROLE_USER'], 'password' => 'gaelle'],

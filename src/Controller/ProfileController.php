@@ -24,18 +24,24 @@ class ProfileController extends AbstractController
             $userRepository->add($user, true);
             $this->addFlash('success', 'Votre profil a bien été mis à jour.');
             return $this->redirectToRoute('profile_dashboard', [], Response::HTTP_SEE_OTHER);
-        } 
-        return $this->render('profile/dashboard.html.twig', [
+        }
+        return $this->render(
+            'profile/dashboard.html.twig',
+            [
             'user' => $userRepository->findOneBy(['id' => $this->getUser()]),
             'form' => $form->createView(),
-        ]);
+            ]
+        );
     }
 
     #[Route('/view/{id}', name: 'view', methods: ['GET'], requirements: ['id' => '\d+'])]
-    public function ProfileView(User $user): Response
+    public function profileView(User $user): Response
     {
-        return $this->render('profile/view.html.twig', [
+        return $this->render(
+            'profile/view.html.twig',
+            [
             'user' => $user,
-        ]);
+            ]
+        );
     }
 }

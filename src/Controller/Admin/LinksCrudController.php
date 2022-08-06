@@ -26,7 +26,7 @@ class LinksCrudController extends AbstractCrudController
             ->setPaginatorPageSize(10)
             ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
     }
-    
+
     public function configureFields(string $pageName): iterable
     {
         return [

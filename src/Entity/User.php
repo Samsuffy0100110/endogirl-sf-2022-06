@@ -23,7 +23,6 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 #[Vich\Uploadable]
 class User implements UserInterface, PasswordAuthenticatedUserInterface, Serializable
 {
-    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column()]
@@ -38,7 +37,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     private array $roles = [];
 
     private ?string $plainPassword = null;
-    
+
     /**
      * @var string The hashed password
      */
@@ -63,7 +62,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     private ?string $avatar = 'default.png';
 
     #[Vich\UploadableField(mapping: 'pictures', fileNameProperty: 'avatar')]
-    #[Assert\Image(mimeTypes: ["image/jpeg", "image/png"], maxSize: "2M", maxSizeMessage: "L'image ne doit pas dépasser 2Mo")]
+    #[Assert\Image(
+        mimeTypes: ["image/jpeg", "image/png"],
+        maxSize: "2M",
+        maxSizeMessage: "L'image ne doit pas dépasser 2Mo"
+    )]
     private ?File $avatarFile = null;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
@@ -195,7 +198,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
 
     /**
      * Get the value of plainPassword
-     */ 
+     */
     public function getPlainPassword()
     {
         return $this->plainPassword;
@@ -204,8 +207,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     /**
      * Set the value of plainPassword
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setPlainPassword($plainPassword)
     {
         $this->plainPassword = $plainPassword;
@@ -290,8 +293,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     /**
      * Set the value of imageFile
      *
-     * @return  self
-
+     * @return self
      */
     public function setAvatarFile(File $avatar = null)
     {
@@ -304,7 +306,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
 
     public function serialize()
     {
-        return serialize(array(
+        return serialize(
+            array(
             $this->id,
             $this->email,
             $this->password,
@@ -312,9 +315,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
             $this->avatar,
             // see section on salt below
             // $this->salt,
-        ));
+            )
+        );
     }
-    
+
     public function unserialize($serialized)
     {
         list (
@@ -338,7 +342,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     /**
      * Set the value of updatedAt
      *
-     * @return  self
+     * @return self
      */
     public function setUpdatedAt(DateTime $updatedAt): self
     {

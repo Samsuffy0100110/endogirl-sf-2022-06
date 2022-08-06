@@ -14,32 +14,38 @@ class SubjectFixtures extends Fixture
         [
             'category' => 'Les enfants',
             'name' => 'Comment leur faire comprendre',
-            'summary' => 'Les enfants sont des personnes qui ont un lien avec l\'homme et la femme. Ils sont donc des personnes qui ont un lien avec l\'homme et la femme.'
+            'summary' => 'Les enfants sont des personnes qui ont un lien avec l\'homme et la femme.
+            Ils sont donc des personnes qui ont un lien avec l\'homme et la femme.'
         ],
         [
             'category' => 'Les enfants',
             'name' => 'Ils m\'aident',
-            'summary' => 'Tous les jours, les enfants sont en train de se sentir plus enfants. Ils sont donc des personnes qui ont un lien avec l\'homme et la femme.'
+            'summary' => 'Tous les jours, les enfants sont en train de se sentir plus enfants.
+            Ils sont donc des personnes qui ont un lien avec l\'homme et la femme.'
         ],
         [
             'category' => 'Douleurs',
             'name' => 'Les maux de ventres',
-            'summary' => 'Les maux de ventres sont des maux qui se produisent lorsque l\'on souffre. Ils sont donc des maux qui se produisent lorsque l\'on souffre.'
+            'summary' => 'Les maux de ventres sont des maux qui se produisent lorsque l\'on souffre.
+            Ils sont donc des maux qui se produisent lorsque l\'on souffre.'
         ],
         [
             'category' => 'Douleurs',
             'name' => 'Les maux de tête',
-            'summary' => 'Les maux de tête sont des maux qui se produisent lorsque l\'on souffre. Ils sont donc des maux qui se produisent lorsque l\'on souffre.'
+            'summary' => 'Les maux de tête sont des maux qui se produisent lorsque l\'on souffre.
+            Ils sont donc des maux qui se produisent lorsque l\'on souffre.'
         ],
         [
             'category' => 'La séxualité',
             'name' => 'Les relations sexuelles',
-            'summary' => 'Les relations sexuelles sont des relations qui se produisent lorsque l\'on souffre. Ils sont donc des maux qui se produisent lorsque l\'on souffre.'
+            'summary' => 'Les relations sexuelles sont des relations qui se produisent lorsque l\'on souffre.
+            Ils sont donc des maux qui se produisent lorsque l\'on souffre.'
         ],
         [
             'category' => 'La séxualité',
             'name' => 'Les actes sexuels douloureux',
-            'summary' => 'Les actes sexuels douloureux sont des actes qui se produisent lorsque l\'on souffre. Ils sont donc des maux qui se produisent lorsque l\'on souffre.'
+            'summary' => 'Les actes sexuels douloureux sont des actes qui se produisent lorsque l\'on souffre.
+            Ils sont donc des maux qui se produisent lorsque l\'on souffre.'
         ],
         [
             'category' => 'Médecine',
@@ -119,7 +125,7 @@ class SubjectFixtures extends Fixture
     {
         $this->slug = $slugify;
     }
-    
+
     public function load(ObjectManager $manager): void
     {
         foreach (self::SUBJECTS as $sujet) {

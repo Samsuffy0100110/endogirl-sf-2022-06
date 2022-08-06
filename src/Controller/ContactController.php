@@ -25,20 +25,30 @@ class ContactController extends AbstractController
             $this->addFlash('success', 'Merci votre message a bien été envoyé');
             return $this->redirectToRoute('contact_new');
         }
-        return $this->render('contact/new.html.twig', [
+        return $this->render(
+            'contact/new.html.twig',
+            [
             'contact' => $contact,
             'form' => $form->createView(),
-        ]);
+            ]
+        );
     }
 
     public function contactView(): Response
     {
         $contact = new Contact();
-        $form = $this->createForm(ContactType::class, $contact, [
+        $form = $this->createForm(
+            ContactType::class,
+            $contact,
+            [
             'attr' => ['action' => $this->generateUrl('contact_new')]
-        ]);
-        return $this->renderForm('contact/_contactForm.html.twig', [
+            ]
+        );
+        return $this->renderForm(
+            'contact/_contactForm.html.twig',
+            [
             'form' => $form,
-        ]);
+            ]
+        );
     }
 }

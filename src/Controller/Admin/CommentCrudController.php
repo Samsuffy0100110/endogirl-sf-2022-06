@@ -25,7 +25,7 @@ class CommentCrudController extends AbstractCrudController
             ->setPageTitle('index', 'Administration des Commentairess')
             ->setPaginatorPageSize(10);
     }
-    
+
     public function configureFields(string $pageName): iterable
     {
         return [

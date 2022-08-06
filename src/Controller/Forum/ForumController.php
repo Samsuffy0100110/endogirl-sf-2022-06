@@ -26,15 +26,18 @@ class ForumController extends AbstractController
         CategoryRepository $category,
         SubjectRepository $subject,
         TopicRepository $topic
-        ): Response {
+    ): Response {
         $topics = $topic->findBy([], ['createdAt' => 'DESC']);
         $categories = $category->findAll();
         $subjects = $subject->findBy(['category' => $categories]);
-        return $this->render('forum/index.html.twig', [
+        return $this->render(
+            'forum/index.html.twig',
+            [
             'categories' => $categories,
             'subjects' => $subjects,
             'topics' => $topics,
-        ]);
+            ]
+        );
     }
 
     #[Route('/subject/{slug}', name: 'subject', requirements: ['slug' => '^[a-z0-9-]+$'], methods: ['GET', 'POST'])]
@@ -44,7 +47,7 @@ class ForumController extends AbstractController
         TopicRepository $topicRepository,
         Slugify $slugify,
         ReplyRepository $replyRepository
-        ): Response {
+    ): Response {
         $topic = $topicRepository->findBy(['subject' => $subject], ['createdAt' => 'DESC']);
         $topics = $topicRepository->createQueryBuilder('t')
             ->where('t.subject = :subject')
@@ -63,50 +66,70 @@ class ForumController extends AbstractController
             $form = $this->createForm(TopicType::class, $topic);
             $form->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid()) {
-                $slugify = new Slugify();
-                $slug = $slugify->generate($topic->getTitle());
-                $topic->setSlug($slug);
-                $topicRepository->add($topic, true);
-                return $this->redirectToRoute('forum_subject', ['slug' => $subject->getSlug()]);
-            }
-        return $this->render('forum/subject.html.twig', [
+        if ($form->isSubmitted() && $form->isValid()) {
+            $slugify = new Slugify();
+            $slug = $slugify->generate($topic->getTitle());
+            $topic->setSlug($slug);
+            $topicRepository->add($topic, true);
+            return $this->redirectToRoute('forum_subject', ['slug' => $subject->getSlug()]);
+        }
+        return $this->render(
+            'forum/subject.html.twig',
+            [
             'subject' => $subject,
             'topics' => $topics,
-            'form' =>$form->createView(),
+            'form' => $form->createView(),
             'topic' => $topic,
             'replies' => $replies,
-        ]);
+            ]
+        );
     }
 
-    #[Route('/topic/{slug}', name: 'topic', requirements: ['slug' => '^[a-z0-9-]+$'], defaults: ['slug' => 'default'], methods: ['GET', 'POST'])]
+    #[Route(
+        '/topic/{slug}',
+        name: 'topic',
+        requirements: ['slug' => '^[a-z0-9-]+$'],
+        defaults: ['slug' => 'default'],
+        methods: ['GET', 'POST']
+    )]
     public function topic(
         Request $request,
         Topic $topic,
         SubjectRepository $subjectRepository,
         ReplyRepository $replyRepository
-        ): Response {
+    ): Response {
         $reply = new Reply();
         $reply->setTopic($topic);
         $reply->setUser($this->getUser());
         $form = $this->createForm(ReplyType::class, $reply);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $replyRepository->add($reply, true);
             return $this->redirectToRoute('forum_topic', ['slug' => $topic->getSlug()]);
         }
-        return $this->render('forum/topic.html.twig', [
+        return $this->render(
+            'forum/topic.html.twig',
+            [
             'topic' => $topic,
             'subject' => $subjectRepository->findOneBy(['slug' => $topic->getSubject()->getSlug()]),
             'form' => $form->createView(),
             'replies' => $replyRepository->findBy(['topic' => $topic]),
-        ]);
+            ]
+        );
     }
-    
-    #[Route('/reply/{id}', name: 'edit_reply', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
-    public function editReply(Request $request, ReplyRepository $replyRepository, TopicRepository $topicRepository): Response
-    {
+
+    #[Route(
+        '/reply/{id}',
+        name: 'edit_reply',
+        requirements: ['id' => '\d+'],
+        methods: ['GET', 'POST']
+    )]
+    public function editReply(
+        Request $request,
+        ReplyRepository $replyRepository,
+        TopicRepository $topicRepository
+    ): Response {
         $reply = $replyRepository->findOneBy(['id' => $request->get('id')]);
         $form = $this->createForm(ReplyType::class, $reply);
         $form->handleRequest($request);
@@ -115,11 +138,14 @@ class ForumController extends AbstractController
             $replyRepository->add($reply, true);
             return $this->redirectToRoute('forum_topic', ['slug' => $reply->getTopic()->getSlug()]);
         }
-        return $this->render('forum/edit_reply.html.twig', [
+        return $this->render(
+            'forum/edit_reply.html.twig',
+            [
             'reply' => $reply,
             'form' => $form->createView(),
             'topic' => $topicRepository->findOneBy(['slug' => $reply->getTopic()->getSlug()]),
-        ]);
+            ]
+        );
     }
 
     #[Route('/reply/{id}/delete', name: 'delete_reply', methods: ['POST'])]

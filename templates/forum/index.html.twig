@@ -10,11 +10,10 @@
         </div>
         <div class="col-lg-4">
             <h1 class="text-warning">Forum</h1>
+        </div>
     </div>
     <div class="row g-0 mb-5">
-        <div class="col-lg-1">
-        </div>
-        <div class="col-lg-6">
+        <div class="col-lg-8 p-3">
             <h3 class="text-center text-warning mb-5 mt-5">les Catégories et leurs sujets</h3>
             <div id="style-scroll" class="card bg-primary p-5 shadow rounded scrollbar">
                 {% for category in categories %}
@@ -41,8 +40,6 @@
                 {% endfor %}
             </div>
             <img class="img-fluid mt-5" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
-        </div>
-        <div class="col-lg-1">
         </div>
         <div class="col-lg-4 p-3">
             <h3 class="text-center text-warning mb-5 mt-5">Les derniers Topics</h3>

@@ -37,9 +37,13 @@ class RegistrationController extends AbstractController
         UserAuthenticatorInterface $userAuthenticator
     ): Response {
         $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user, [
+        $form = $this->createForm(
+            RegistrationFormType::class,
+            $user,
+            [
             'action' => $this->generateUrl('register'),
-        ]);
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -51,11 +55,15 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('verify_email', $user, (new TemplatedEmail())
-                ->from(new Address('no-reply@ndogirl.fr', 'Endogirl'))
-                ->to($user->getEmail())
-                ->subject('Merci de confirmer votre email')
-                ->htmlTemplate('security/confirmation_email.html.twig'));
+            $this->emailVerifier->sendEmailConfirmation(
+                'verify_email',
+                $user,
+                (new TemplatedEmail())
+                    ->from(new Address('no-reply@ndogirl.fr', 'Endogirl'))
+                    ->to($user->getEmail())
+                    ->subject('Merci de confirmer votre email')
+                    ->htmlTemplate('security/confirmation_email.html.twig')
+            );
             // do anything else you need here, like send an email
 
             $this->addFlash('success', 'Bienvenue sur Endogirl, Un email de confirmation vous a été envoyé');
@@ -63,13 +71,18 @@ class RegistrationController extends AbstractController
             return $userAuthenticator->authenticateUser($user, $authenticator, $request);
         }
         if ($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash('secondary', 'Les mots de passe doivent être identiques et doivent contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial');
+            $this->addFlash('secondary', 'Les mots de passe doivent être identiques
+            et doivent contenir au moins une lettre minuscule,
+            une lettre majuscule, un chiffre et un caractère spécial');
 
             return $this->redirectToRoute('security');
         }
-        return $this->render('security/register.html.twig', [
+        return $this->render(
+            'security/register.html.twig',
+            [
             'registrationForm' => $form->createView(),
-        ]);
+            ]
+        );
     }
 
     #[Route('/verify/email', name: 'verify_email')]

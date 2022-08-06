@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,19 +19,22 @@ class SecurityController extends AbstractController
     #[Route(name: 'login', methods: ['GET', 'POST'])]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        
+
         $lastUsername = $authenticationUtils->getLastUsername();
         $error = $authenticationUtils->getLastAuthenticationError();
-        return $this->render('security/login.html.twig', [
+        return $this->render(
+            'security/login.html.twig',
+            [
             'last_username' => $lastUsername,
             'error' => $error,
-        ]);
+            ]
+        );
     }
 
     #[Route('/logout', name: 'logout', methods: ['GET'])]
     public function logout()
     {
         // controller can be blank: it will never be called!
-        throw new \Exception('Don\'t forget to activate logout in security.yaml');
+        throw new Exception('Don\'t forget to activate logout in security.yaml');
     }
 }

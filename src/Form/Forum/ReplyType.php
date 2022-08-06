@@ -16,31 +16,44 @@ class ReplyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('message', CKEditorType::class, [
+            ->add(
+                'message',
+                CKEditorType::class,
+                [
                 'attr' => ['data-editor' => true],
                 'config_name' => 'light',
                 'label' => 'Réponse',
-            ])
-            ->add('createdAt', DateTimeType::class, [
+                ]
+            )
+            ->add(
+                'createdAt',
+                DateTimeType::class,
+                [
                 'attr' => [
                     'hidden' => 'hidden',
                 ],
                 'data' => new DateTime(),
                 'label' => false,
-            ])
-            ->add('submit', SubmitType::class, [
+                ]
+            )
+            ->add(
+                'submit',
+                SubmitType::class,
+                [
                 'label' => 'Envoyer',
                 'attr' => [
                     'class' => 'btn btn-outline-warning',
                 ],
-            ])
-        ;
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'data_class' => Reply::class,
-        ]);
+            ]
+        );
     }
 }

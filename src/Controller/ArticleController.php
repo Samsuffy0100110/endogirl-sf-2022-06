@@ -20,9 +20,12 @@ class ArticleController extends AbstractController
     public function index(ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->findBy([], ['createdAt' => 'DESC']);
-        return $this->render('article/index.html.twig', [
+        return $this->render(
+            'article/index.html.twig',
+            [
             'articles' => $articles,
-        ]);
+            ]
+        );
     }
 
     #[Route('/{slug}', name: 'show', methods: ['GET', 'POST'])]
@@ -30,7 +33,7 @@ class ArticleController extends AbstractController
         Article $article,
         Request $request,
         CommentRepository $commentRepository
-        ): Response {
+    ): Response {
         $user = $this->getUser();
         $comment = new Comment();
         $comment->setArticle($article);
@@ -42,14 +45,20 @@ class ArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $commentRepository->add($comment, true);
             $this->addFlash('success', 'Merci pour ton commentaire !');
-            return $this->redirectToRoute('article_show', [
+            return $this->redirectToRoute(
+                'article_show',
+                [
                 'slug' => $article->getSlug(),
-            ]);
-        } 
-        return $this->render('article/show.html.twig', [
+                ]
+            );
+        }
+        return $this->render(
+            'article/show.html.twig',
+            [
             'article' => $article,
             'form' => $form->createView(),
             'comment' => $comment,
-        ]);
+            ]
+        );
     }
 }
