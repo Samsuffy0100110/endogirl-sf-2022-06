@@ -152,7 +152,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     /**
      * @see UserInterface
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
@@ -205,7 +205,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     /**
      * Get the value of plainPassword
      */
-    public function getPlainPassword()
+    public function getPlainPassword(): ?string
     {
         return $this->plainPassword;
     }
@@ -215,7 +215,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
      *
      * @return self
      */
-    public function setPlainPassword($plainPassword)
+    public function setPlainPassword(?string $plainPassword)
     {
         $this->plainPassword = $plainPassword;
         return $this;

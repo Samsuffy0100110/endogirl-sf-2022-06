@@ -12,7 +12,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     #[Route('/', name: 'security')]
-    public function index()
+    public function index(): Response
     {
         return $this->render('security/index.html.twig');
     }
@@ -32,7 +32,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route('/logout', name: 'logout', methods: ['GET'])]
-    public function logout()
+    public function logout(): void
     {
         // controller can be blank: it will never be called!
         throw new Exception('Don\'t forget to activate logout in security.yaml');

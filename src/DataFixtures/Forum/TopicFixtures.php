@@ -83,7 +83,7 @@ class TopicFixtures extends Fixture
         $manager->flush();
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             SubjectFixtures::class,
