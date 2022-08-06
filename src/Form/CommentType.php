@@ -18,10 +18,12 @@ class CommentType extends AbstractType
                 'summary',
                 CKEditorType::class,
                 [
-                'attr' => ['data-editor' => true],
+                'attr' => ['data-editor' => true,
+                    'class' => 'form-control',
+                    'placeholder' => 'Votre commentaire',
+                ],
                 'config_name' => 'light',
                 'label' => 'Commentaire',
-                'placeholder' => 'Votre commentaire',
                 ]
             )
             ->add(

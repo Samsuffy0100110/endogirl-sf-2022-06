@@ -38,11 +38,12 @@ class TopicType extends AbstractType
                 'content',
                 CKEditorType::class,
                 [
-                'attr' => ['data-editor' => true],
+                'attr' => ['data-editor' => true,
+                    'class' => 'form-control',
+                    'placeholder' => 'Contenu du sujet',
+                ],
                 'config_name' => 'light',
                 'label' => 'Contenu',
-                'placeholder' => 'Contenu du sujet',
-                'class' => 'form-control',
                 ]
             )
             ->add(
