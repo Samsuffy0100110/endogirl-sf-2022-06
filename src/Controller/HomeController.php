@@ -2,17 +2,46 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\LinksRepository;
+use App\Repository\ArticleRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(): Response
+    public function index(ArticleRepository $articleRepository): Response
     {
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
+        $article = $articleRepository->findOneBy(['isPublished' => true], ['createdAt' => 'DESC']);
+        return $this->render(
+            'home/index.html.twig',
+            [
+            'article' => $article,
+            ]
+        );
+    }
+
+    public function showLinks(LinksRepository $linksRepository): Response
+    {
+        $links = $linksRepository->findAll();
+        return $this->render(
+            'include/_links.html.twig',
+            [
+            'links' => $links,
+            ]
+        );
+    }
+
+    public function showUser(UserRepository $userRepository): Response
+    {
+        $user = $userRepository->findOneBy(['id' => $this->getUser()]);
+        return $this->render(
+            'include/_user.html.twig',
+            [
+            'user' => $user,
+            ]
+        );
     }
 }

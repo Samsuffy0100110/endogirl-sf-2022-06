@@ -1,0 +1,8 @@
+<section class="bg-info p-5 shadow rounded mt-5">
+{% for flash_error in app.flashes('verify_email_error') %}
+<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+{% endfor %}
+<input type="hidden" name="referer" 
+	value="{{app.request.headers.get('referer')}}"/>
+{{ form(registrationForm) }}
+</section>

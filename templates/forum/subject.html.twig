@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ subject.name }}{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <div class="row g-0">
+        <div class="col-lg-8 d-flex flex-column align-items-center">
+            <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
+            <a class="mt-3 text-dark nav-link fw-bold" href="{{ path('forum_index')}}">Retour à la liste des catégories</a>
+        </div>
+        <div class="col-lg-4">
+            <h1 class="text-warning text-center">{{ subject.name }}</h1>
+        </div>
+    </div>
+    <div class="row g-0">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-8 mb-5">
+                <table class="table table-bordered mt-5 bg-primary p-5">
+                    <thead>
+                        <tr>
+                            <th class="text-warning" scope="col">{{ subject.name }}</th>
+                            <th class="text-warning" scope="col">Date de création</th>
+                            <th class="text-warning" scope="col">Auteur</th>
+                            <th class="text-warning" scope="col">Dernière réponse</th>
+                        </tr>
+                    </thead>
+                {% for topic in topics %}
+                    <tbody>
+                        <tr>
+                            <td><a class="text-decoration-none" href="{{ path('forum_topic', {'slug': topic.slug }) }}">{{ topic.title }}</a></td>
+                            <td><small>{{ topic.createdAt|format_datetime('full', 'short',  locale='fr', timezone='Europe/Paris') }}</small></td>
+                            <td class="text-dark fw-bold"><a class="text-decoration-none" href="{{ path('profile_view', {'id': topic.user.id})}}">{{ topic.user.nickname }}</a></td>
+                            {% for reply in replies|filter(reply => reply.topic == topic)|slice(0,1) %}
+                                {% if reply.topic == topic %}
+                                    <td class="text-dark"><strong><a class="text-decoration-none" href="{{ path('profile_view', {'id': reply.user.id})}}">{{ reply.user }}</a></strong><br><i><small>{{ reply.createdAt|format_datetime('full', 'short', locale='fr', timezone='Europe/Paris') }}</i></small></td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="row mb-5 g-0">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-8">
+            {% if app.user %}
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item bg-info">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button fs-5 collapsed text-dark bg-info border" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Créer un nouveau topic
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        {{ form(form )}}
+                    </div>
+                </div>
+            </div>
+        </div> 
+            {% else %}
+                <hr>
+                <a class="nav-link text-dark btn btn-info mb-5 mt-5" href="{{ path('security')}}">Connecte toi pour créer un topic</a>
+            {% endif %}
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog Endogirl{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row g-0">
+            <div class="col-lg-8 p-3 scrollbar" id="style-scroll">
+                <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
+                <h2 class="text-center text-warning mt-5">Tous mes articles</h2>
+                {% for article in articles %}
+                <div class="container mb-5">
+                    <div class="row g-0">
+                        <div class="col-lg-12 d-flex flex-column align-items-center">
+                            <a class="text-decoration-none" href="{{ path("article_show", { 'slug': article.slug }) }}">
+                            <div class="card mb-3 mt-5 shadow" style="max-width: 36rem;">
+                                <img src="{{ ('/images/pictures/' ~ article.picture)}}" class="card-img-top" alt="{{ article.slug }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ article.title }}</h5>
+                                    <p class="card-text"><small class="text-muted">{{ article.createdAt|format_datetime('full', 'short', locale='fr')}}</small></p>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                </div> 
+                {% endfor %}
+            </div>
+            <div class="col-lg-4 p-3">
+                <h1 class="text-warning text-center">Mon Humeur du moment</h1>
+                <p class="text-dark mt-5 mb-5 home-content">
+                    Bienvenue sur la page de mes articles,<br>
+                    Ici vous trouverez des articles, mes humeurs du moment, des conseils, et peut être même des recettes de cuisine 😜...<br><br>
+                    Je demande juste aux personnes qui laissent des commentaires de rester courtois et de garder un esprit ouvert et bienveillant, pour ne pas transformer cet endroit en un échange de haine et de violence.<br><br>
+                    Si vous avez des idées, des conseils, des recettes de cuisine, ou des commentaires, ou tout autre article susceptible d'être partager, n'hésitez pas à me contacter directement via le formulaire de contact.<br><br>
+                </p>
+                <img src="{{ asset('build/images/levitate.png') }}" alt="Mother and Child">
+            </div>
+        </div>
+    </div>
+{% endblock %}

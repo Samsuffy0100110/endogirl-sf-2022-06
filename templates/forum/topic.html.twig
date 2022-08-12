@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ topic.title }}{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row g-0">
+        <div class="col-lg-8 d-flex flex-column align-items-center">
+            <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
+            <a class="mt-3 text-dark nav-link fw-bold" href="{{ path('forum_subject', {'slug': subject.slug}) }}">Retour à la liste des topics du sujet {{ subject.name }}</a>
+        </div>
+        <div class="col-lg-4">
+            <h1 class="text-warning tex-center">{{ topic.title }}</h1>
+        </div>
+    </div>
+    <div class="row g-0 mt-5">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-8">
+            <a class="text-decoration-none" href="{{ path('profile_view', {'id': topic.user.id})}}">
+            <div class="d-flex bg-light align-items-center">
+                <img style="border-radius: 50%" src="{{ ('/images/pictures/' ~ topic.user.avatar)|imagine_filter('avatar') }}" alt="{{ topic.user.nickname }}">
+                <h3 class="text-warning ps-3"><strong><i>{{ topic.user.nickname }}</i></strong></h3>
+            </div>
+            </a>
+            <i class="text-dark"><small>Le {{ topic.createdAt|format_datetime('full', 'short',  locale='fr', timezone='Europe/Paris') }}</small></i>
+            <div class="card shadow p-3 fs-5 text-dark">
+                <p>{{ topic.content|raw }}</p>
+            </div>
+            <hr>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="row g-0 mt-2">
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-7">
+            {% for reply in replies %}
+                <a class="text-decoration-none" href="{{ path('profile_view', {'id': reply.user.id})}}">
+                <div class="d-flex bg-light align-items-center">
+                    <img style="border-radius: 50%" src="{{ ('/images/pictures/' ~ reply.user.avatar)|imagine_filter('avatar') }}" alt="{{ reply.user.nickname }}">
+                    <h4 class="text-warning ps-3"><strong><i>{{ reply.user.nickname }}</i></strong></h4>
+                </div>
+                </a>
+                <i class="text-dark"><small>Le {{ reply.createdAt|format_datetime('full', 'short',  locale='fr', timezone='Europe/Paris') }}</small></i>
+                <hr>
+                <div class="card shadow p-3 text-dark fs-5">
+                    <p>{{ reply.message|raw }}</p>
+                </div>
+                {% if app.user.id == reply.user.id %}
+                <div class="d-flex justify-content-end">
+                    <input type="hidden">
+                    <a href="{{ path('forum_edit_reply', {'id': reply.id}) }}"><button class="btn btn-outline-warning me-5 mt-5">Modifier</button></a>
+                    {{ include('forum/delete_reply.html.twig') }}
+                </div>
+                {% else %}
+                <hr>
+                {% endif %}
+                <hr>
+            {% endfor %}
+        </div>
+        <div class="col-lg-1">
+        </div>
+    </div>
+    <div class="row g-0 mt-5">
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-7">
+            {% if app.user %}
+            {{ form(form) }}   
+            {% else %}
+                <hr>
+                <a class="nav-link text-dark btn btn-info mb-5 mt-5" href="{{ path('security')}}">Connecte toi pour laisser un message</a>
+            {% endif %}
+        </div>
+        <div class="col-lg-1">
+        </div>
+    </div>
+</div>
+{% endblock %}

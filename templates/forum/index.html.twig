@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Forum{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row g-0">
+        <div class="col-lg-8 d-flex flex-column align-items-center">
+            <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
+        </div>
+        <div class="col-lg-4">
+            <h1 class="text-warning">Forum</h1>
+        </div>
+    </div>
+    <div class="row g-0 mb-5">
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-7 p-3">
+            <h2 class="text-center text-warning mb-5 mt-5">les Catégories et leurs sujets</h2>
+            <div id="style-scroll" class="card bg-primary p-3 shadow rounded scrollbar">
+                {% for category in categories %}
+                <h3 class="text-warning mt-3 fw-bold">{{ category.name }}</h3>
+                    {% for subject in category.subjects %}
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item ">
+                            <div class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed bg-info border" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    <p class="text-dark fs-5">{{ subject.name }}</p>
+                                </button>
+                            </div>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <a class="text-decoration-none" href="{{ path('forum_subject', { 'slug': subject.slug })}}">
+                                    <div class="accordion-body">
+                                        <p class="text-dark">{{ subject.summary }}</p>
+                                        <small class="d-flex justify-content-end fw-bold">Voir les topics de ce sujet</small>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            <img class="img-fluid mt-5" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
+        </div>
+        <div class="col-lg-4 p-5">
+            <h3 class="text-center text-warning mb-5 mt-5">Les derniers Topics</h3>
+            <div class="card p-5 shadow rounded">
+                {% for topic in topics|slice(0, 3) %}
+                    <a class="text-decoration-none fs-5 text-warning" href="{{ path('forum_topic', {'slug': topic.slug }) }}">{{ topic.title }}</a>
+                    <p class="text-dark mt-3 text-end text-dark">Par : {{ topic.user }}</p>
+                    <hr>
+                {% endfor %}
+            </div>
+            <div>
+                <h3 class="text-center text-warning mb-5 mt-5">Des idées de sujets ?</h3>
+                <p class="text-dark home-content">J'ai décidé de délibérément limiter le nombre de sujets par soucis d'ergonomie, si néanmoins vous avez des idées où des envies de sujets, contactez-moi sur le formulaire ci-dessous</p>
+            </div>
+            <section class="bg-info rounded pt-5 ps-5 pe-5 shadow mt-5">
+                {{ render(controller('App\\Controller\\ContactController::contactView')) }}
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,7 +1,21 @@
-<footer class="fixed-bottom bg-info">
-    <div class="container p-4">
-    </div>
-    <div class="p-3 bg-primary text-end">
-        <a class="foot-link text-dark text-decoration-none fw-bold" style="color: rgba(0, 0, 0, 0.05);" href="https://mdbootstrap.com/">Fait par Samsuffy</a>
+<footer id="footer" class="footer mx-auto text-white text-center">
+    <div class="container-fluid bg-primary">
+        <div class="row g-0 align-items-center">
+            <div class="col-lg-3 col-sm-6 p-2">
+                <p class="text-dark mt-3">&copy; {{ "now"|date("Y")}} <strong class="text-warning">Endogirl</strong></p>
+            </div>
+            <div class="col-lg-2 col-sm-6">
+                <a href="https://www.facebook.com/gaelle.jolivet2/" target="_blank"><img src="{{ asset('build/images/facebook.png') }}" alt="Facebook" style="width: 40px;"></a>
+            </div>
+            <div class="col-lg-2 col-sm-6">
+                <a href="https://www.instagram.com/jolivetbrambilla/" target="_blank"><img src="{{ asset('build/images/instagram.png') }}" alt="Instagram" style="width: 40px;"></a>
+            </div>
+            <div class="col-lg-2 col-sm-6">
+                <a class="nav-link fw-bold text-dark" href="{{ path('legals') }}">Mentions Légales</a>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <a class="nav-link fw-bold text-dark" style="color: rgba(0, 0, 0, 0.05);" href="https://www.linkedin.com/in/yoann-brambilla-2a13a7234/" target="_blank">Fait par Samsuffy</a>
+            </div>
+        </div>
     </div>
 </footer>

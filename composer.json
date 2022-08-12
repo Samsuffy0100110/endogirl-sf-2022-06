@@ -1,4 +1,6 @@
 {
+    "name": "samsuffy0100110/endogirl",
+    "description": "",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
@@ -12,8 +14,13 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.12",
         "easycorp/easyadmin-bundle": "^4.3",
+        "fakerphp/faker": "^1.20",
+        "friendsofsymfony/ckeditor-bundle": "^2.4",
+        "liip/imagine-bundle": "^2.8",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.6",
+        "phpstan/phpstan": "^1.8",
+        "sebastian/phpcpd": "^6.0",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/asset": "6.1.*",
         "symfony/console": "6.1.*",
@@ -39,18 +46,26 @@
         "symfony/string": "6.1.*",
         "symfony/translation": "6.1.*",
         "symfony/twig-bundle": "6.1.*",
+        "symfony/ux-dropzone": "^2.3",
+        "symfony/ux-swup": "^2.3",
         "symfony/validator": "6.1.*",
         "symfony/web-link": "6.1.*",
         "symfony/webpack-encore-bundle": "^1.15",
         "symfony/yaml": "6.1.*",
+        "symfonycasts/reset-password-bundle": "^1.14",
+        "symfonycasts/verify-email-bundle": "^1.11",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/intl-extra": "^3.4",
+        "twig/string-extra": "^3.4",
+        "twig/twig": "^2.12|^3.0",
+        "vich/uploader-bundle": "^1.20"
     },
     "config": {
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "phpro/grumphp": true
         },
         "optimize-autoloader": true,
         "preferred-install": {
@@ -80,7 +95,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "ckeditor:install": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"
@@ -99,6 +115,9 @@
         }
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "phpmd/phpmd": "@stable",
+        "phpro/grumphp": "^1.13",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "6.1.*",
         "symfony/css-selector": "6.1.*",

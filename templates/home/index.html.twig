@@ -1,15 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Endométriose Blog{% endblock %}
+{% block title %}Bienvenue sur Endogirl{% endblock %}
 
 {% block body %}
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-8">
-                <img src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
+        <div class="row g-0">
+        {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                        {{ message|raw }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            <div class="col-lg-7 p-3 d-flex flex-column align-items-center">
+                <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
+                <h3 class="text-center text-warning mt-5">Dernier Article</h3>
+                <a class="text-decoration-none" href="{{ path("article_show", { 'slug': article.slug }) }}">
+                <div class="card mb-3 mt-5 shadow rounded" style="max-width: 40rem;">
+                    <img src="{{ ('/images/pictures/' ~ article.picture)}}" class="card-img-top img-fluid" alt="{{ article.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">{{ article.title }}</h5>
+                        <i class="card-text text-dark"><small class="text-muted">{{ article.createdAt|format_datetime('full', 'short', locale='fr')}}</small></i>
+                    </div>
+                </div>
+                </a>
+                <div class="row g-0 d-flex align-items-center">
+                    <div class="col-lg-8">
+                        <img class="img-fluid" src="{{ asset('build/images/arrowhomedown.png') }}" alt="Arrow">
+                    </div>
+                    <div class="col-lg-4">
+                        <a class="nav-link text-dark fs-5" href="{{ path("article_show", { 'slug': article.slug }) }}">Voir L'article</a>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-4">
-                <h1 class="text-warning">Bienvenue sur endoloris</h1>
+            <div class="col-lg-4 p-3">
+                <h1 class="text-warning text-center">Bienvenue sur Endogirl</h1>
+            <p class="home-content text-dark mt-5">
+                Bonjour à toutes et à tous, Endogirl est un site de libre expression et d’entraide pour toutes les personnes qui sont touchées de près ou de loin par cette vicieuse maladie “l’endométriose”. <br><br>
+                Je me présente, je m’appelle Gaëlle, j’ai 42 ans et je suis atteinte d’endométriose sévère de stade 4 depuis plus de 20 ans. A l’annonce du diagnostic par mon médecin, et surtout par sa surprenante révélation à l’époque “vous n’aurez jamais d’enfants”, moi et mon chéri sommes tombés dans un état de totale incompréhension et bien sûr de tristesse… <br><br>
+                Suite à cela les médecins de l’époque m'ont opérée pour une opération qui selon leurs mots était “du gros boulot”. Étant résignés nous avons malgré tout essayé d’avoir des enfants… et miracle notre premier enfant est finalement né quelques mois plus tard, et ont suivis 2 autres miracles et le tout SANS TRAITEMENT ! <br><br>
+                Je suis quand même poursuivie aujourd’hui encore par cette maladie et même à un stade sévère, sans possibilité d’opération sous peine de très grand risque pour ma vie…
+                Mais ma positivité incessante me fait avancer tous les jours et me donne l’envie aujourd’hui de raconter mon histoire, et surtout de pouvoir aider les femmes et leur donner de l’espoir…<br><br>
+                <small><i>PS: Ce site est le premier site réalisé par mon chéri, si quelque chose vous semble incohérent n'hésitez pas à nous en faire part…</i></small>      
+            </p>
+                <img class="mt-5" src="{{ asset('build/images/motherchild.png') }}" alt="Mother and Child">
+            </div>
+            <div class="col-lg-1">
             </div>
         </div>
     </div>
