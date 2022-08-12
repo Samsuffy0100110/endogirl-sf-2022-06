@@ -26,6 +26,9 @@
             <i class="text-dark"><small>Le {{ topic.createdAt|format_datetime('full', 'short',  locale='fr', timezone='Europe/Paris') }}</small></i>
             <div class="card shadow p-3 fs-5 text-dark">
                 <p>{{ topic.content|raw }}</p>
+                {% if app.user.id == topic.user.id  %}
+                    <a href="{{ path('forum_topic_edit', {'slug': topic.slug}) }}"><button class="btn btn-outline-warning me-5 mt-5">Modifier</button></a>
+                {% endif %}
             </div>
             <hr>
         </div>
