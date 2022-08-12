@@ -8,7 +8,7 @@ Le repo ici :
 
 https://github.com/Samsuffy0100110/endoloris
 
-## Qi Gong - Kit de démarrage - Symfony
+
 
 ## Presentation
 
