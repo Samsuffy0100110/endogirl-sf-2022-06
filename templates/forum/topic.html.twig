@@ -24,7 +24,7 @@
             </div>
             </a>
             <i class="text-dark"><small>Le {{ topic.createdAt|format_datetime('full', 'short',  locale='fr', timezone='Europe/Paris') }}</small></i>
-            <div class="card shadow p-1 fs-5 text-dark">
+            <div class="card shadow p-3 fs-5 text-dark">
                 <p>{{ topic.content|raw }}</p>
             </div>
             <hr>
@@ -45,7 +45,7 @@
                 </a>
                 <i class="text-dark"><small>Le {{ reply.createdAt|format_datetime('full', 'short',  locale='fr', timezone='Europe/Paris') }}</small></i>
                 <hr>
-                <div class="card shadow p-1 text-dark fs-5">
+                <div class="card shadow p-3 text-dark fs-5">
                     <p>{{ reply.message|raw }}</p>
                 </div>
                 {% if app.user.id == reply.user.id %}

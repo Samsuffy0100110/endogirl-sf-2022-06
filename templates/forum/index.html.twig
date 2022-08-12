@@ -13,19 +13,21 @@
         </div>
     </div>
     <div class="row g-0 mb-5">
-        <div class="col-lg-8 p-3">
-            <h3 class="text-center text-warning mb-5 mt-5">les Catégories et leurs sujets</h3>
-            <div id="style-scroll" class="card bg-primary p-5 shadow rounded scrollbar">
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-7 p-3">
+            <h2 class="text-center text-warning mb-5 mt-5">les Catégories et leurs sujets</h2>
+            <div id="style-scroll" class="card bg-primary p-3 shadow rounded scrollbar">
                 {% for category in categories %}
-                <h4 class="text-warning mt-3">{{ category.name }}</h4>
+                <h3 class="text-warning mt-3 fw-bold">{{ category.name }}</h3>
                     {% for subject in category.subjects %}
                     <div class="accordion accordion-flush" id="accordionFlushExample">
                         <div class="accordion-item ">
-                            <h2 class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button fs-5 collapsed text-dark bg-info border" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                    {{ subject.name }}
+                            <div class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed bg-info border" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    <p class="text-dark fs-5">{{ subject.name }}</p>
                                 </button>
-                            </h2>
+                            </div>
                             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                 <a class="text-decoration-none" href="{{ path('forum_subject', { 'slug': subject.slug })}}">
                                     <div class="accordion-body">
@@ -41,7 +43,7 @@
             </div>
             <img class="img-fluid mt-5" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
         </div>
-        <div class="col-lg-4 p-3">
+        <div class="col-lg-4 p-5">
             <h3 class="text-center text-warning mb-5 mt-5">Les derniers Topics</h3>
             <div class="card p-5 shadow rounded">
                 {% for topic in topics|slice(0, 3) %}
