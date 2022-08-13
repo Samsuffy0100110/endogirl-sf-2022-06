@@ -19,7 +19,7 @@ class ContactController extends AbstractController
     #[Route('/', name: 'new')]
     public function new(Request $request, ContactRepository $contactRepository, MailerInterface $mailer): Response
     {
-        $user = $this->getUser();
+
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
@@ -28,11 +28,10 @@ class ContactController extends AbstractController
             $contactRepository->add($contact, true);
 
             $email = (new Email())
-            ->from($user->$this->getEmail())
+            ->from($contact->getEmail())
             ->to('gaelleyo@gmail.com')
-            ->subject('Nouveau message de ' . $user->$this->getNickName())
-            ->text('Vous avez un nouveau message de '
-            . $user->$this->getNickName() . ' : ' . $contact->$this->getMessage());
+            ->subject('Nouveau message de ' . $contact->getName() . ' à propos de : ' . $contact->getSubject())
+            ->text($contact->getMessage());
             $mailer->send($email);
 
             $this->addFlash('success', 'Merci votre message a bien été envoyé');

@@ -5,7 +5,7 @@
 {% block body %}
     <div class="container-fluid">
         <div class="row g-0">
-            <div class="col-lg-8 p-3 scrollbar" id="style-scroll">
+            <div class="col-lg-6 p-3 scrollbar" id="style-scroll">
                 <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
                 <h2 class="text-center text-warning mt-5">Tous mes articles</h2>
                 {% for article in articles %}
@@ -23,8 +23,10 @@
                             </a>
                         </div>
                     </div>
-                </div> 
+                </div>
                 {% endfor %}
+            </div>
+            <div class="col-lg-1">
             </div>
             <div class="col-lg-4 p-3">
                 <h1 class="text-warning text-center">Mon Humeur du moment</h1>

@@ -7,7 +7,7 @@
     <div class="row g-0">
         <div class="col-lg-1">
         </div>
-        <div class="col-lg-6 p-3 d-flex flex-column align-items-center">
+        <div class="col-lg-5 p-3 d-flex flex-column align-items-center">
             <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
             <p class="card-text mt-5 text-warning fw-bold">Le {{ article.createdAt|format_datetime('full', 'short', locale='fr')}}</p>
             <p class="text-dark mb-5">{{ article.content|raw }}</p>
@@ -17,6 +17,8 @@
         <div class="col-lg-4 p-3">
             <h1 class="text-warning mb-5">{{ article.title }}</h1>
             <img src="{{ ('/images/pictures/' ~ article.picture)}}" class="card-img-top img-fluid shadow rounded" alt="{{ article.title }}">
+        </div>
+        <div class="col-lg-1">
         </div>
     </div>
     <div class="row mt-5 g-0">
@@ -33,12 +35,14 @@
                 {% endfor %}
             {% endfor %}
         </div>
-        <div class="col-lg-7">
+        <div class="col-lg-6">
             <img class="img-fluid" src="{{ asset('build/images/arrowdown.png') }}" alt="Arrow">
+        </div>
+        <div class="col-lg-1">
         </div>
     </div>
     <div class="row g-0">
-        <div class="col-lg-8 p-3 mt-5 comment-scrollbar" id="style-scroll">
+        <div class="col-lg-6 p-3 mt-5 comment-scrollbar" id="style-scroll">
             {% for comment in article.comments %}
             <hr>
                 <a class="text-decoration-none text-warning fw-bold me-5" href="">{{ comment.user }}</a><i>{{ comment.createdAt|format_datetime('full', 'short', locale='fr', timezone='Europe/Paris') }}</i>
@@ -53,8 +57,12 @@
                 <a class="nav-link text-dark btn btn-info mb-5 mt-5 w-50" href="{{ path('security')}}">Connecte toi pour laisser un message</a>
             {% endif %}
         </div>
+        <div class="col-lg-1">
+        </div>
         <div class="col-lg-4 p-3 mt-5">
             <img class="img-fluid" src="{{ asset('build/images/comment.png') }}" alt="comment">
+        </div>
+        <div class="col-lg-1">
         </div>
     </div>
 </div>
