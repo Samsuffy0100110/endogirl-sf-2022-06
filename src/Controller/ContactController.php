@@ -29,7 +29,7 @@ class ContactController extends AbstractController
 
             $email = (new Email())
             ->from($contact->getEmail())
-            ->to('gaelleyo@gmail.com')
+            ->to('gaelle@endogirl.fr')
             ->subject('Nouveau message de ' . $contact->getName() . ' à propos de : ' . $contact->getSubject())
             ->text($contact->getMessage());
             $mailer->send($email);
