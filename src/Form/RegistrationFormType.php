@@ -74,11 +74,6 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Mot de passe requis',
                         ]
                     ),
-                    new Regex(
-                        [
-                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/',
-                        ]
-                    ),
                 ],
                 ],
                 'second_options' => [
