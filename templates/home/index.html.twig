@@ -15,7 +15,7 @@
             {% endfor %}
             <div class="col-lg-7 p-3 d-flex flex-column align-items-center">
                 <img class="img-fluid" src="{{ asset('build/images/arrowHomeUp.png') }}" alt="Arrow">
-                <h3 class="text-center text-warning mt-5">Dernier Article</h3>
+                <h2 class="text-center text-warning mt-5">Dernier Article</h2>
                 <a class="text-decoration-none" href="{{ path("article_show", { 'slug': article.slug }) }}">
                 <div class="card mb-3 mt-5 shadow rounded" style="max-width: 40rem;">
                     <img src="{{ ('/images/pictures/' ~ article.picture)}}" class="card-img-top img-fluid" alt="{{ article.title }}">
