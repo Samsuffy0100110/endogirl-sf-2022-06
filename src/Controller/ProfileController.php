@@ -34,7 +34,7 @@ class ProfileController extends AbstractController
         );
     }
 
-    #[Route('/view/{id}', name: 'view', methods: ['GET'], requirements: ['id' => '\d+'])]
+    #[Route('/view/{id}', name: 'view', requirements: ['id' => '\d+'], methods: ['GET'])]
     public function profileView(User $user): Response
     {
         return $this->render(
