@@ -120,6 +120,31 @@ class ForumController extends AbstractController
     }
 
     #[Route(
+        '/topic/{slug}/edit',
+        name: 'topic_edit',
+        requirements: ['slug' => '^[a-z0-9-]+$'],
+        methods: ['GET', 'POST']
+    )]
+
+    public function editTopic(Request $request, TopicRepository $topicRepository): Response
+    {
+        $topic = $topicRepository->findOneBy(['slug' => $request->get('slug')]);
+        $form = $this->createForm(TopicType::class, $topic);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $topicRepository->add($topic, true);
+            return $this->redirectToRoute('forum_topic', ['slug' => $topic->getSlug()]);
+        }
+        return $this->render(
+            'forum/topic_edit.html.twig',
+            [
+            'topic' => $topic,
+            'form' => $form->createView(),
+            ]
+        );
+    }
+
+    #[Route(
         '/reply/{id}',
         name: 'edit_reply',
         requirements: ['id' => '\d+'],
